@@ -5,8 +5,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', views.index, name="index"),
-    path('index/', views.index, name="inicio"),
     path('donar/', views.donar, name="donar"),
     path('listar/', views.listar, name="listar"),
     path('crear/', views.crear, name="crear"),

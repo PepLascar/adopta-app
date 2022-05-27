@@ -11,6 +11,7 @@ from django.contrib.auth.models import User
 
 @login_required(login_url="login") #Decorador, lista, articulos, etc
 def index(req):
+    print('en index')
     return render (req, 'index.html', {
         'title': 'Inicio'
     })
