@@ -1,0 +1,57 @@
+body{
+    background-color: rgb(250, 249, 249);
+}
+
+.box form{
+    width: 40%;
+}
+
+.box form input,
+.box form label{
+    display: block;
+    padding: 5px;
+    padding-left: 0px;
+}
+
+.box form input[type="text"],
+.box form input[type="email"],
+.box form input[type="password"],
+.box form textarea,
+.box form select{
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.box form select{
+    width: 70px;
+    padding: 5px;
+}
+
+.box form input[type="submit"],
+.box form input[type="button"],
+.box form button{
+    padding: 10px;
+    margin-top: 10px;
+    background: rgb(20, 61, 59);
+    border: 1px solid black;
+    color: white;
+    transition: 200ms all;
+}
+
+.box form input[type="submit"]:hover,
+.box form input[type="button"]:hover,
+.box form button{
+    cursor: pointer;
+    background: rgb(6, 19, 18);
+    transition: 300ms all;
+}
+
+#content{
+    width: 1212px;
+    min-height: 930px;
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 40px;
+    line-height: 25px;
+    justify-content: center;
+}

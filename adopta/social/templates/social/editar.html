@@ -1,0 +1,25 @@
+{% extends 'social/layout.html' %}
+{% block content%}
+
+<form class='form' method='POST' enctype='multipart/form-data'>
+    {% csrf_token %}
+    <label for="image">Subir foto</label>
+    <input id="image" type="file" name="image" required>
+    <button type='submit' id='submit'>Editar foto de perfil</button>
+</form>
+
+{% if messages %}
+    {% for m in messages %}
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                timer: 2000,
+                title: 'Foto de perfil editada',
+                showConfirmButton: false,
+                timer: 1500
+              })
+        </script>
+    {% endfor %}
+{% endif %}
+{% endblock%}

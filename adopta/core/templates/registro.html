@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+{% block title %} {{title}} {% endblock %}
+
+{% block content %}
+<h1>{{title}}</h1>
+
+<div class="formulario">
+    {{register_form.error}}
+    <form class="form" method="POST" action="">
+        {% csrf_token %}
+
+       {#{{register_form.as_p}}#}
+       {# {{register_form.username.label}}  campo por campo que quiero mostrar #}  
+       {# {{register_form.username}}  #}            
+            
+        {% for field in register_form %} {# imprimir todos los campos del register from #}
+            {{field.label}}
+            {{field}}
+        {% endfor %}
+         
+        <input type="submit" value="Registrarse" />
+    </form>
+</div>
+{% endblock %}

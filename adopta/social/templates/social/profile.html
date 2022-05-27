@@ -1,0 +1,65 @@
+{% extends 'social/feed.html' %}
+{% block content %}
+
+<!-- Profile -->
+<div class="profile">
+	<img src="{{ user.profile.image.url }}">
+	<h2>@{{ user.username }}</h2>
+	{% if request.user.is_authenticated %}
+		{% if user.username != request.user.username %}
+			{% if user not in request.user.profile.following %}
+				<button><a class="follow-button" href="{% url 'follow' user %}">Follow</a></button>
+			{% else %}
+				<button><a class="follow-button" href="{% url 'unfollow' user %}">Unfollow</a></button>
+			{% endif %}
+		{% endif %}
+	{% endif %}
+</div>
+
+<!-- Follow items -->
+<div class="follow">
+	<div>
+		<h5>Post</h5>
+		<p>{{ user.posts.count }}</p> <!-- Total post usuario -->
+	</div>
+	<div>
+		<h5>Pets</h5>
+		<p>{{ pet.count }}</p> <!-- Total post usuario -->
+	</div>	
+	<div>
+		<h5>Followers</h5> <!-- Total followers  -->
+		<p>{{ user.profile.followers.count }}</p>
+	</div>
+	<div>
+		<h5>Following</h5> <!-- Total following -->
+		<p>{{ user.profile.following.count }}</p>
+	</div>
+</div>
+{{ block.super }}	
+
+	{% for i in pet %}
+		{% if request.user.is_authenticated and user.id == i.user_id %}		
+		{% comment %} {{i.title}} {% endcomment %}
+		{% comment %} {{i.articuloid}} {% endcomment %}
+		<img src="/media/{{i.image}}" width="160" height="160">
+		<a href="{% url 'editar' i.articuloid  %}" class="btn btn-outline-success">Editar</a>		
+		<a href="{% url 'eliminar' i.articuloid  %}" class="btn btn-outline-danger">Eliminar</a> 	
+		{% endif %}	
+	{% endfor %}
+
+	{% for m in messages %}
+		<script>
+			Swal.fire({
+				title: 'Has editado tu foto de perfil',
+				width: 600,
+				timer:1400,
+				showConfirmButton: false,	
+				padding: '3em',
+				color: '#716add',
+				imageUrl: '/static/perro.png',
+				imageWidth: 400,
+				imageHeight: 200,
+				})
+		</script>
+	{% endfor %}
+{% endblock %}

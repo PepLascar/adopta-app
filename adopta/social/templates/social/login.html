@@ -1,0 +1,11 @@
+{% extends 'social/layout.html' %}
+{% block content%}
+
+<form class='form' method='POST'>
+{% csrf_token %}
+<!-- https://docs.djangoproject.com/en/4.0/topics/forms/ -->
+{{ form.as_p }}
+<button typoe='submit' id='submit'>Login</button>
+</form>
+
+{% endblock%}

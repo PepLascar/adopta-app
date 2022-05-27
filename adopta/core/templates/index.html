@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% block title %} {{title}} {% endblock %}
+
+{% block content %}
+    <h1>{{title}}</h1>
+    {% if messages %}
+        {% for msg in messages%}
+            <div class="alert alert-success" role="alert">
+                {{msg}}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {% if user.email %} <!--Verificar si el mail del usuario existe-->
+        <h2> Bienvenido {{request.user.first_name}} {{user.last_name}} !</h2>
+        Usuario: {{user.username}}<br>
+        {{user.email}}
+    {% else %}
+        <h2>Identificate para desplegar todas las funcionalidades.</h2>
+    {% endif %}
+{% endblock %}
