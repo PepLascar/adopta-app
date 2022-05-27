@@ -1,13 +1,6 @@
 {% extends 'social/layout.html' %}
 {% block title %} {{page.title}} {% endblock %}
 {% block content %}
-    {% comment %} {% if messages %}
-        {% for msg in messages%}
-            <div class="alert alert-success" role="alert">
-                {{msg}}
-            </div>
-        {% endfor %}
-    {% endif %} {% endcomment %}
     {% if messages %}
         {% for m in messages %}
     <script>

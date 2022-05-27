@@ -6,7 +6,7 @@ from django.conf.urls.static import static
 from django.contrib.auth.views import LoginView, LogoutView
 
 urlpatterns = [
-	path('', views.feed, name='feed'),
+	path('feed/', views.feed, name='feed'),
 	path('profile/', views.profile, name='profile'),
 	path('profile/<str:username>/', views.profile, name='profile'),
     path('register/', views.register, name='register'),

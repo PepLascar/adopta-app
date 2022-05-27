@@ -27,12 +27,12 @@ def crear(request):
     if request.method == 'POST':
         print("Método post")
         formulario = FormArticle(request.POST, files=request.FILES)  
-        if formulario.is_valid():    #is_valid evalúa las condiciones de validación que se configuran
+        if formulario.is_valid(): # is_valid evalúa las condiciones de validación que se configuran
             print("Consola 139")
-            data_form = formulario.cleaned_data #datos limpios que llegan del formulario           
+            data_form = formulario.cleaned_data # Datos limpios que llegan del formulario           
             user = getattr(request, 'user', None)
             title   = data_form.get('title')
-            content = data_form.get('content')              #Variables para recoger la información del cleaned data
+            content = data_form.get('content') # Variables para recoger la información del cleaned data
             disponible  = data_form['disponible']
             image = data_form.get('image')
                             
@@ -58,21 +58,21 @@ def crear(request):
     })
 
 def listar(req):
-    articles = Article.objects.all()  # Traer/obtener todos los objetos (articulos)
+    articles = Article.objects.all() # Traer/obtener todos los objetos (articulos)
     return render(req, 'listar.html', {
         'title': 'Artículos',
-        'articles': articles   #devolver esta variable
+        'articles': articles
     })
 
 def editar(req, pk):
-    articulo = Article.objects.get(articuloid=pk) # variable con objeto Article del modelo
+    articulo = Article.objects.get(articuloid=pk) # Variable con objeto Article del modelo
     print(f'oo oo {articulo}')
     datos = {
         'form': FormArticle(instance=articulo)
     }
     print('141 141')
     if req.method == 'POST':
-        formulario_edit = FormArticle(data=req.POST, instance=articulo, files=req.FILES)  # conjunto de datos a grabar, mediante la instancia del objeto
+        formulario_edit = FormArticle(data=req.POST, instance=articulo, files=req.FILES)  # Conjunto de datos a grabar, mediante la instancia del objeto
         if formulario_edit.is_valid:
             formulario_edit.save()
             datos['mensaje'] = "Vehículo Editado Correctamente"
@@ -84,8 +84,8 @@ def editar(req, pk):
 def eliminar(req, pk):
     current_user = request.user
     if username and username != current_user.username:
-        articulo = Article.objects.get(pk=pk) #instancia del articulo que quiero eliminar, id obtenida desde views
-        articulo.delete() # elimino ese objeto instanciado 
+        articulo = Article.objects.get(pk=pk) # Instancia del articulo que quiero eliminar, id obtenida desde views
+        articulo.delete() # Elimino ese objeto instanciado 
         print(f'Eliminado {articulo}')
     else:
         user = current_user
@@ -119,3 +119,4 @@ def profile(request, username=None):  #obteniendo perfil de los usuarios, a trav
 		pet = Article.objects.all().filter(user_id=userId)
 		print(pet)		
 	return render(request, 'social/profile.html', {'user':user, 'posts':posts, 'pet':pet})
+    

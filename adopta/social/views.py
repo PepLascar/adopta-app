@@ -7,11 +7,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.db.models.query_utils import DeferredAttribute
 
-
 def feed(request):
 	posts = Post.objects.all()
-	context = { 'posts': posts}
-	print('En feed')
+	context = {'posts': posts}
 	return render(request, 'social/feed.html', context)
 
 def register(request):
