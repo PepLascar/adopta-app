@@ -16,11 +16,6 @@ def index(req):
         'title': 'Inicio'
     })
 
-def donar(req):
-    return render(req, 'donar.html',{
-        'title': 'Donaciones'
-    })
-
 # --- Listar Artículos con Categorías ---
 @login_required(login_url='login')
 def crear(request): 
@@ -66,11 +61,12 @@ def listar(req):
 
 def editar(req, pk):
     articulo = Article.objects.get(articuloid=pk) # Variable con objeto Article del modelo
-    print(f'oo oo {articulo}')
+    print(f'oo Editando ... oo {articulo}')
     datos = {
+        'title': 'Edita los datos de tu mascota',
         'form': FormArticle(instance=articulo)
     }
-    print('141 141')
+    # print('141 141')
     if req.method == 'POST':
         formulario_edit = FormArticle(data=req.POST, instance=articulo, files=req.FILES)  # Conjunto de datos a grabar, mediante la instancia del objeto
         if formulario_edit.is_valid:
