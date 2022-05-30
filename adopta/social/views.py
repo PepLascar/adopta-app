@@ -12,6 +12,9 @@ def feed(request):
 	context = {'posts': posts}
 	return render(request, 'social/feed.html', context)
 
+def petProfile(req):
+	return render(req, 'social/feed.html')
+
 def register(request):
 	if request.method == 'POST':
 		form = Formulario(request.POST)
