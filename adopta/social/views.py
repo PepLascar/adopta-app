@@ -92,13 +92,13 @@ def editProfile(request, pk):
 		files=request.FILES
 		if formulario_edit.is_bound == False:		
 			formulario_edit.save()
-			messages.success(request, 'Foto de perdil editada') #REVISAR QUE ESTABA HACIENDO ACA
+			messages.success(request, 'Foto de perfil editada') #REVISAR QUE ESTABA HACIENDO ACA
 			print('FALSE')
 			print(data)			
 			return redirect('profile')
 		if formulario_edit.is_bound == True:		
 			formulario_edit.save()
-			messages.success(request, 'Foto de perdil editada')
+			messages.success(request, 'Foto de perfil editada')
 			print('TRUE')
 			print(data)
 			return redirect('profile')

@@ -36,21 +36,19 @@
 	</div>
 </div>
 {{ block.super }}	
-
 	{% for i in pet %}
-		{% if request.user.is_authenticated and user.id == i.user_id %}		
-		{% comment %} {{i.title}} {% endcomment %}
-		{% comment %} {{i.articuloid}} {% endcomment %}
-		<img src="/media/{{i.image}}" width="160" height="160">
-		<a href="{% url 'editar' i.articuloid  %}" class="btn btn-outline-success">Editar</a>		
-		<a href="{% url 'eliminar' i.articuloid  %}" class="btn btn-outline-danger">Eliminar</a> 	
-		{% endif %}	
+			<a href="https://www.qries.com/"> <img alt="Qries" src="/media/{{i.image}}"  width="350" height="350"></a>
+			<img src="/media/{{i.image}}" width="200" height="200">
+		{% if request.user.is_authenticated and user.username == request.user.username %}		
+			<a href="{% url 'editPet' i.articuloid  %}" class="btn btn-outline-success">Editar</a>		
+			<a href="{% url 'eliminar' i.articuloid  %}" class="btn btn-outline-danger">Eliminar</a> 
+		{% endif %}			
 	{% endfor %}
 
 	{% for m in messages %}
 		<script>
 			Swal.fire({
-				title: 'Has editado tu foto de perfil',
+				title: '{{m}}',
 				width: 600,
 				timer:1400,
 				showConfirmButton: false,	

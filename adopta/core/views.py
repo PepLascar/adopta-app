@@ -9,12 +9,12 @@ from django.contrib.auth.models import User
 
 # https://simpleisbetterthancomplex.com/tutorial/2017/02/18/how-to-create-user-sign-up-view.html
 
-@login_required(login_url="login") #Decorador, lista, articulos, etc
-def index(req):
-    print('en index')
-    return render (req, 'index.html', {
-        'title': 'Inicio'
-    })
+# @login_required(login_url="login") #Decorador, lista, articulos, etc
+# def index(req):
+#     print('en index')
+#     return render (req, 'index.html', {
+#         'title': 'Inicio'
+#     })
 
 # --- Listar Artículos con Categorías ---
 @login_required(login_url='login')
@@ -59,7 +59,8 @@ def listar(req):
         'articles': articles
     })
 
-def editar(req, pk):
+@login_required(login_url='login')
+def editPet(req, pk):
     articulo = Article.objects.get(articuloid=pk) # Variable con objeto Article del modelo
     print(f'oo Editando ... oo {articulo}')
     datos = {
@@ -71,10 +72,10 @@ def editar(req, pk):
         formulario_edit = FormArticle(data=req.POST, instance=articulo, files=req.FILES)  # Conjunto de datos a grabar, mediante la instancia del objeto
         if formulario_edit.is_valid:
             formulario_edit.save()
-            datos['mensaje'] = "Vehículo Editado Correctamente"
-            messages.success(req, f'Has editado correctamente el artículo {articulo.articuloid}: {articulo.title}' )
-            return redirect('listar')  
-    return render(req, 'editar.html', datos)
+            messages.success(req, 'Datos de mascota editados' )
+            return redirect('profile')  
+    return render(req, 'editPet.html', datos)
+# validar el formulario desde el controlador para que cualquier usuario via get no pueda editar un articulo que no sea propio
 
 @login_required(login_url='login')
 def eliminar(req, pk):

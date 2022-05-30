@@ -8,7 +8,6 @@
             {% else %}
                 <img src="{% static 'core/img/sinfoto.png' %}" alt='Sin imágen' width="130" height="130"> </br>
             {% endif %}
-
             <div class="data">
             <h1><strong>ID artículo:  {{article.articuloid}}</strong></h1>           
             <h2><a href=""> Título:  {{article.title}}  </a></h2> {# Puedo referenciar titulo #}           
@@ -39,7 +38,6 @@
             <div class="clearfix"></div>
             <br/> {% endcomment %}
         </article>
-
     {% endfor %}
 <span class="date">{{page.created_at}}</span> <!-- Montando la pagina a través de la herencia proveniente de la BD-->
 <p class="content">{{page.content|safe}}</p>  <!--para CKeditor - lo que haya en page.content con |safe reconoce lo escrito en html y no como texto plano-->
