@@ -3,15 +3,15 @@
 {% block content %}
     {% if messages %}
         {% for m in messages %}
-    <script>
-    Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'Felicidades, has compartido una mascota',
-        showConfirmButton: false,
-        timer: 1800
-      })
-    </script>
+            <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Felicidades, has compartido una mascota',
+                showConfirmButton: false,
+                timer: 1800
+            })
+            </script>
         {% endfor %}
     {% endif %}
     <!--<h1 class="title">{{title}}</h1>-->

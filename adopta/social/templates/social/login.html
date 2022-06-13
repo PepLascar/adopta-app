@@ -1,11 +1,33 @@
 {% extends 'social/layout.html' %}
 {% block content%}
-
 <form class='form' method='POST'>
 {% csrf_token %}
 <!-- https://docs.djangoproject.com/en/4.0/topics/forms/ -->
 {{ form.as_p }}
 <button typoe='submit' id='submit'>Login</button>
 </form>
-
 {% endblock%}
+
+
+{% comment %} {% extends 'layout.html' %}
+{% block title %} {{title}} {% endblock %}
+{% block content %}
+<h1>{{title}}</h1>
+
+    {% if messages %}
+        {% for msg in messages%}
+            <div class="alert alert-success" role="alert">
+                {{msg}}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST" action="">
+        {% csrf_token %}
+        <label for="username">Nombre de usuario: </label>
+        <input type="text" name="username"/>       
+        <label for="password">Contraseña:</label>
+        <input type="password" name="password"/>
+        <input type="submit" value="Login"/>
+    </form>
+{% endblock %} {% endcomment %}

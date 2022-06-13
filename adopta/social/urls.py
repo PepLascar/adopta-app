@@ -8,7 +8,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 urlpatterns = [
 	path('feed/', views.feed, name='feed'),
 	path('profile/', views.profile, name='profile'),
-	path('petProfile/', views.petProfile, name='petProfile'),
+	path('petProfile/<id>', views.petProfile, name='petProfile'),
 	path('profile/<str:username>/', views.profile, name='profile'),
     path('register/', views.register, name='register'),
 	path('login/', LoginView.as_view(template_name='social/login.html'), name='login'),

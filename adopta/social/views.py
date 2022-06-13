@@ -12,8 +12,15 @@ def feed(request):
 	context = {'posts': posts}
 	return render(request, 'social/feed.html', context)
 
-def petProfile(req):
-	return render(req, 'social/feed.html')
+# Perfil de una mascota
+@login_required
+def petProfile(req, id):
+	pet = Article.objects.get(articuloid=id)
+	getOwner = pet.user_id
+	owner = User.objects.get(id=getOwner)
+	data ={ 'pet':pet,
+			'owner':owner}
+	return render(req, 'social/petProfile.html', data)
 
 def register(request):
 	if request.method == 'POST':

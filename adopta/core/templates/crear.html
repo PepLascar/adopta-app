@@ -3,16 +3,27 @@
 
 {% block title %} Formularios Artículos {% endblock title %}
 {% block content %}
-
     {% if form.errors %}
-    <strong class="rojo">
-        Hay errores en el Formulario
-    </strong>
+    <strong class="rojo"> Hay errores en el Formulario {{ form.errors }} </strong>
     {% endif %}
 
-<form action="" method="POST" enctype='multipart/form-data'>
+<form class='form' method='POST' enctype='multipart/form-data'>
     {% csrf_token %}
-    {{ form.as_p }} 
-    <input id="btn-guardar" type="submit" value="Guardar"/>
+    <label for="title">Nombre mascota: </label>
+    <input type="text" name="title" required>
+
+    <label for="categories">Tipo: </label>
+    <input type="text" name="categories" required>
+    
+    <label for="content">Déscribe a tu mascota: </label>
+    <input type="text" name="content" required>
+   
+    <label for="disponible">Disponible</label>
+    <input type="checkbox" name="disponible" required>
+
+    <label for="image">Subir foto</label>
+    <input id="image" type="file" name="image" required>
+
+    <button type='submit' id='submit'>Subir mascota</button>
 </form>
 {% endblock %}

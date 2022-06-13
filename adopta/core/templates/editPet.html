@@ -1,16 +1,12 @@
 {% extends 'social/layout.html' %}
 {#{% load filters %}#}
-{% block title %} Formularios Artículos {% endblock title %}
+{% comment %} {% block title %} Formularios Artículos {% endblock title %} {% endcomment %}
 {% block content %}
 
-<h1>{{title}}</h1>
-
-{% comment %} <h1 class="title">¿Olvidaste algo? Edita los datos de tu mascota</h1> {% endcomment %}
-    {% if form.errors %}
-    <strong class="rojo">
-        Hay errores en el Formulario
-    </strong>
-    {% endif %}
+{% comment %} <h1>{{title}}</h1> {% endcomment %}
+{% if form.errors %}
+    <strong class="rojo"> Hay errores en el Formulario </strong>
+{% endif %}
 
 <form action="" method="POST" enctype='multipart/form-data' id="formulario-editar">
     {% csrf_token %}
@@ -18,4 +14,19 @@
     <input type="submit"  class="btn btn-primary" value="Editar"/>
     {# <div id="mensaje" class="alert alert-success" role="alert">{{mensaje}}{{mensaje2}}</div> #}
 </form>
+
+{% if messages %}
+    {% for m in messages %}
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                timer: 2000,
+                title: 'Datos de mascota editados',
+                showConfirmButton: false,
+                timer: 1500
+              })
+        </script>
+    {% endfor %}
+{% endif %}
 {% endblock %}

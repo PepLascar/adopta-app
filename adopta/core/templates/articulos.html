@@ -1,9 +1,10 @@
-       {% load static %}      
-       {% for article in articles %} {#Recorrer lista de artículos#}
+{% load static %}      
+    {% for article in articles %} {#Recorrer lista de artículos#}
         <article class ="article-item">
-           {% if article.image != 'null' and article.image.url|length >= 1 %} <!-- y es diferente a null si image existe lo va a mostrar-->
+        {% if article.image != 'null' and article.image.url|length >= 1 %} <!-- y es diferente a null si image existe lo va a mostrar-->
                 <div class="image">
-                    <img src="{{article.image.url}}" width="160" height="160"> <!-- Con .url me saca la url del fichero donde se encuentra las imagenes-->
+                    {% comment %} <img src="{{article.image.url}}" width="380" height="380"> <!-- Con .url me saca la url del fichero donde se encuentra las imagenes--> {% endcomment %}
+                    <a href="/petProfile/{{article.articuloid}}"> <img class="publicaciones" alt="Qries" src="{{article.image.url}}""  width="250" height="250"></a>
                 </div>
             {% else %}
                 <img src="{% static 'core/img/sinfoto.png' %}" alt='Sin imágen' width="130" height="130"> </br>
@@ -13,7 +14,7 @@
             <h2><a href=""> Título:  {{article.title}}  </a></h2> {# Puedo referenciar titulo #}           
             <p>
                 {% for i in article.categories.all %}  {#recorrer para mostrar las categorías  vinculadas al artículos#}
-                   <a href=""> {{ i.name }} </a>      {# ENLAZADO - All es para sacar elementos en la relación M:M #}
+                <a href=""> {{ i.name }} </a>      {# ENLAZADO - All es para sacar elementos en la relación M:M #}
                     {#relacionar páginas entre las diferentes categorías C.283#}
                     {% if forloop.counter < article.categories.all|length%} {#Comprobar que el contador es menor al número total de categorías#}
                     {{'-'}}         {# encadenado del guón al final de cada categoría #}
@@ -32,6 +33,7 @@
             <p>
             {{article.content|safe}} {#para que tome el html  {% url 'editar' article.id  %}  {% url 'eliminar' article.id  %} #}
             </p>
+            <th><a href="/petProfile/{{article.articuloid}}" class="btn btn-primary">Quiero adoptarlo </a></th>
             </div>
             {% comment %} <th><a href="{% url 'editar' article.articuloid  %}" class="btn btn-primary">Editar </a></th>
             <th><a href="{% url 'eliminar' article.articuloid  %}" class="btn btn-danger">Eliminar</a></th> 

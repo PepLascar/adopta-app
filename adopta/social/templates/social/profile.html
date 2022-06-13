@@ -42,7 +42,7 @@
 </div>
 {{ block.super }}	
 	{% for i in pet %}
-			<a href="/petProfile"> <img class="publicaciones" alt="Qries" src="/media/{{i.image}}"  width="250" height="250"></a>
+			<a href="/petProfile/{{i.articuloid}}"> <img class="publicaciones" alt="Qries" src="/media/{{i.image}}"  width="250" height="250"></a>
 			<!--<img class="publicaciones" src="/media/{{i.image}}" width="200" height="200">-->
 		{% if request.user.is_authenticated and user.username == request.user.username %}		
 			<a href="{% url 'editPet' i.articuloid  %}" class="btn btn-outline-success">Editar</a>		

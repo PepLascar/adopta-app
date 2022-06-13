@@ -1,0 +1,18 @@
+{% extends 'social/feed.html' %}
+{% block content %}
+<div class="pet-profile">
+    <img class="pet-image" src="/media/{{pet.image}}">
+    <h1>Me llamo</h1>
+    <h1>{{ pet.title }}</h1>
+    <br>
+    {{ pet.content }}
+    <br>
+    {{ pet.disponible }}
+    <br>
+    {{ pet.created_at }}
+    <h1>Dueño {{ owner }}</h1>
+    <h1>Email {{ owner.email }}</h1>    
+    <img src='https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=https://google.cl' alt="qr">
+</div>
+ 
+{% endblock %}
