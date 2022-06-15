@@ -34,30 +34,11 @@ img{
 	background: white;
 	color: black;
 }
-.msg-nav{
-  color: black;
-  margin-top: 20px;
-  text-transform: uppercase;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  /*text-shadow: 2px 0 0 black, -2px 0 0 black, 0 2px 0 black, 0 -2px 0 black, 1px 1px black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;*/
-}
-.msg-register{
-  font-size: medium;
-  padding-top: 20px;
-}
-nav.main-nav{
+#main-nav{
 	min-height: 7vh;
-	display: flex;
-	width: 65%;
-	margin: auto; 
+	display: flex; 
 	align-items: center;
-	padding: 0.5rem;
-}
-#alerta-carousel{
-  background-color: #641c34;
-  border-color: #800040;
-  color: white;
-  border-width: 5px;
+	
 }
 /* Dropdown Button */
 .dropbtn {
@@ -94,28 +75,55 @@ nav.main-nav{
 
 /* Cambiar color de links de dropdown en hover */
 .dropdown-content a:hover {
-  background-color: black;
-  color: white;
+  background-color: white;
+  color: #2F4F4F;
+  border-radius: 20px;
+ 
 }
 
 /* Mostrar el menu del dropdown en hover */
-.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropdown-content {display: block;
+  border-radius: 20px;}
 
 /* Cambiar background-color del boton dropdown cuando el contenido es mostrado */
 .dropdown:hover .dropbtn {background-color: white;}
 
-nav.main-nav ul{
+#main-nav ul{
 	display: flex;
-	flex: 1 1 40rem;
 	justify-content: space-around;
 	align-items: center;
 	list-style: none;
+  flex: 1 1 5rem;
 }
-
+.logout-nav{
+  padding-left: 30px;
+  padding-right: 80px;
+}
 #logo{
-	flex: 2 1 40rem;
+  background: linear-gradient(to right, orange,#331e25);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 25px;
+  padding-left: 70px;
+  padding-right: 70px;
 }
-
+.msg-nav{
+  color: black;
+  margin-top: 20px;
+  padding-left: 90px;
+  text-transform: uppercase;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  /*text-shadow: 2px 0 0 black, -2px 0 0 black, 0 2px 0 black, 0 -2px 0 black, 1px 1px black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;*/
+}
+.msg-register{
+  font-size: medium;
+  padding-top: 20px;
+  padding-left: 50px;
+}
+#msg-logout{
+  background-color: white;
+  border-color: white;
+}
 /* -----*/
 .tiempo{
   position: relative;
@@ -141,13 +149,12 @@ a:hover{
   position: inherit;
   margin-top: 40px;
 }
-.main-nav{
-  background: white;
-	width: 60%;
-	margin: 5% auto;
-	border-radius: 4px;
-	padding-bottom: 20px;
-  text-align: left;
+#alerta-carousel{
+  
+  border-color: #800040;
+  color: white;
+  border-width: 3px;
+  background-image: linear-gradient(to top right,#641c34,#2f0715);
 }
 /* NAVIGATION BAR */
 .second-nav{
@@ -249,6 +256,20 @@ time {
   display: inline;
   padding-left: 10px;
   padding-top: 10px;
+  border-radius: 30px;
+}
+#card-profile{
+  background-color: white;
+  border-color: white;
+  display: inline;
+  padding-left: 30px;
+  padding-right: 10px;
+  text-align: center;
+  width: 50%;
+}
+#boton-post{
+  margin-top: 40px;
+  margin-left: 20px;
 }
 /* Funcion editar foto perfil de vista Profile */
 #btn-edit{
@@ -374,10 +395,12 @@ button#submit:hover {
   text-align: center;
 }
 
+/* FOOTER */
 footer{
   width: 100%;
   background: #202020;
   color: white;
+  background-image: linear-gradient(to right,#641c34, #ab34440a);
 }
 .container-footer-all{
   width: 100%;

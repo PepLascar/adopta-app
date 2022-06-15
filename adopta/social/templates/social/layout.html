@@ -18,34 +18,36 @@
 </head>
 <body>
 	<header class="main-head">
-		<nav class="main-nav">
+		<ul id="main-nav" class="nav nav-tabs">
 			<h1 id="logo">Adopta <img src="https://cdn-icons-png.flaticon.com/128/1167/1167679.png" alt="" height="40px"></h1>
 			<ul>
-			{% if user.username and request.user.username == user.username %} <!--Verificar si el mail del usuario existe-->
-			<!--<h2>Bienvenido, {{user.username}}.</h2>-->
-			{% elif user.username %}
-			<h4 class="msg-nav">Visitando a @{{user.username}}.</h4>
-			{% else %}
-				{% comment %} <h4 class="msg-register">Ingresa para acceder a todas las funcionalidades.</h4> {% endcomment %}
-			{% endif %}
-			</ul>
-			<ul>
+				{% if user.username and request.user.username == user.username %} <!--Verificar si el mail del usuario existe-->
+				<!--<h2>Bienvenido, {{user.username}}.</h2>-->
+				{% elif user.username %}
+				<h4 class="msg-nav">Visitando a @{{user.username}}.</h4>
+				{% else %}
+					<h4 class="msg-register">Ingresa para acceder a todas las funcionalidades.</h4>
+				{% endif %}
+				</ul>
 				{% if request.user.is_authenticated %}
-				<li><a href="{% url 'listar' %}">¡Quiero Adoptar!</a></li>				
-				<div class="dropdown">
-					<button class="dropbtn"><a class="profile"
+				<li class="nav-item">
+			  	<a class="nav-link" href="{% url 'listar' %}">!Quiero Adoptar¡</a>
+				</li>
+				<li class="dropdown">
+					<button class="dropbtn"><a class="nav-link"
 						href="{% url 'profile' request.user.username %}">Mi Perfil</a></button>
 					<div class="dropdown-content">
-					  <a href="{% url 'editProfile' user.pk %}">Editar foto perfil</a>
+						<a href="{% url 'editProfile' user.pk %}">Editar foto perfil</a>
 					</div>
-				  </div>		
-				<li><a href="{% url 'logout' %}">Desconectarme</a></li>
+				</li>
+				<li class="nav-item">
+			  	<a class="nav-link" href="{% url 'logout' %}">Desconectar</a>
+				</li>
 				{% else %}
-				<li><a href="{% url 'login' %}">Ingresar</a></li>					
-				<li><a href="{% url 'register' %}">Registrarme</a></li>		
+				<li class="logout-nav"><a href="{% url 'login' %}">Ingresar</a></li>					
+				<li class="logout-nav"><a href="{% url 'register' %}">Registrarme</a></li>		
 				{% endif %}
-			</ul>
-		</nav>
+		  	</ul>
 	</header>
 
 	<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">

@@ -32,22 +32,27 @@
 		<p>{{ pet.count }}</p> <!-- Total post usuario -->
 	</div>	
 	<div>
-		<h5>Following</h5> <!-- Total following -->
-		<p>{{ user.profile.following.count }}</p>
-	</div>
-	<div>
 		<h5>Followers</h5> <!-- Total followers  -->
 		<p>{{ user.profile.followers.count }}</p>
 	</div>
+	<div>
+		<h5>Following</h5> <!-- Total following -->
+		<p>{{ user.profile.following.count }}</p>
+	</div>
 </div>
 {{ block.super }}	
-	{% for i in pet %}
-			<a href="/petProfile/{{i.articuloid}}"> <img class="publicaciones" alt="Qries" src="/media/{{i.image}}"  width="250" height="250"></a>
-			<!--<img class="publicaciones" src="/media/{{i.image}}" width="200" height="200">-->
-		{% if request.user.is_authenticated and user.username == request.user.username %}		
-			<a href="{% url 'editPet' i.articuloid  %}" class="btn btn-outline-success">Editar</a>		
-			<a href="{% url 'eliminar' i.articuloid  %}" class="btn btn-outline-danger">Eliminar</a> 
-		{% endif %}			
+{% for i in pet %}
+	<div id="card-profile" class="card">
+		<a href="..">
+			<img class="publicaciones" alt="Qries" src="/media/{{i.image}}"  width="250" height="250">
+		</a>
+		<div class="card-img-overlay">
+			{% if request.user.is_authenticated and user.username == request.user.username %}		
+			<a href="{% url 'editPet' i.articuloid  %}" id="boton-post" class="btn btn-outline-success">Editar</a>		
+			<a href="{% url 'eliminar' i.articuloid  %}" id="boton-post" class="btn btn-outline-danger">Eliminar</a> 
+			{% endif %}
+		</div>
+	</div>
 	{% endfor %}
 
 	{% for m in messages %}
