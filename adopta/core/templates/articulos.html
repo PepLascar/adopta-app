@@ -4,14 +4,15 @@
         {% if article.image != 'null' and article.image.url|length >= 1 %} <!-- y es diferente a null si image existe lo va a mostrar-->
                 <div class="image">
                     {% comment %} <img src="{{article.image.url}}" width="380" height="380"> <!-- Con .url me saca la url del fichero donde se encuentra las imagenes--> {% endcomment %}
-                    <a href="/petProfile/{{article.articuloid}}"> <img class="publicaciones" alt="Qries" src="{{article.image.url}}""  width="250" height="250"></a>
+                    <a href="/petProfile/{{article.articuloid}}"> <img class="publicaciones" alt="Qries" src="{{article.image.url}}" width="250" height="250"></a>
                 </div>
             {% else %}
                 <img src="{% static 'core/img/sinfoto.png' %}" alt='Sin imágen' width="130" height="130"> </br>
             {% endif %}
             <div class="data">
-            <h1><strong>ID artículo:  {{article.articuloid}}</strong></h1>           
-            <h2><a href=""> Título:  {{article.title}}  </a></h2> {# Puedo referenciar titulo #}           
+            <h1><strong>ID artículo:  {{article.articuloid}}</strong></h1>
+            <h2><a href=""> Título:  {{article.title}}</a></h2>
+            <h2>{{article.categories.name}}</h2>
             <p>
                 {% for i in article.categories.all %}  {#recorrer para mostrar las categorías  vinculadas al artículos#}
                 <a href=""> {{ i.name }} </a>      {# ENLAZADO - All es para sacar elementos en la relación M:M #}

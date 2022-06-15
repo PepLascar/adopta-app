@@ -32,12 +32,12 @@
 		<p>{{ pet.count }}</p> <!-- Total post usuario -->
 	</div>	
 	<div>
-		<h5>Followers</h5> <!-- Total followers  -->
-		<p>{{ user.profile.followers.count }}</p>
-	</div>
-	<div>
 		<h5>Following</h5> <!-- Total following -->
 		<p>{{ user.profile.following.count }}</p>
+	</div>
+	<div>
+		<h5>Followers</h5> <!-- Total followers  -->
+		<p>{{ user.profile.followers.count }}</p>
 	</div>
 </div>
 {{ block.super }}	

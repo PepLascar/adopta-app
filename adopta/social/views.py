@@ -54,7 +54,7 @@ def post(request):
 def profile(request, username=None):  #obteniendo perfil de los usuarios, a trave´s de la url se visitan
 	current_user = request.user #usuario logueda
 	if username and username != current_user.username: 
-		user = User.objects.get(username=username)#revisar si quiero visitar un usuario cuañquiera
+		user = get_object_or_404(User, username=username)#revisar si quiero visitar un usuario cuañquiera
 		posts = user.posts.all()
 		userId= request.user.id	
 		pet= Article.objects.all().filter(user_id=user)

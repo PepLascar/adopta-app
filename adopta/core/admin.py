@@ -2,11 +2,9 @@
 from django.contrib import admin
 from .models import Category, Article
 
-class CategoryAdmin(admin.ModelAdmin):
-    readonly_fields = ('created_at',) #La coma está puesta así para que lo interprete como una tupla 
-    list_display = ('name', 'created_at')
-    search_fields = ('name', 'description')
-
+class CategoryAdmin(admin.ModelAdmin): 
+    list_display = ('name',)
+    
 class ArticleAdmin(admin.ModelAdmin):
     readonly_fields = ('user', 'created_at', 'update_at')
     search_field = ('title', 'content', 'user__username', 'categories__name') #Con __ acceso a la propiedad de comparar con el modelo dde articulos
