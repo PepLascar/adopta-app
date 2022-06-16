@@ -15,7 +15,7 @@ def feed(request):
 # Perfil de una mascota
 @login_required
 def petProfile(req, id):
-	pet = Article.objects.get(articuloid=id)
+	pet = get_object_or_404(Article, articuloid=id)
 	petList = Article.objects.all()
 	getOwner = pet.user_id
 	owner = User.objects.get(id=getOwner)
