@@ -26,7 +26,7 @@
 				{% elif user.username %}
 				<h4 class="msg-nav">Visitando a @{{user.username}}.</h4>
 				{% else %}
-					<h4 class="msg-register">Ingresa para acceder a todas las funcionalidades.</h4>
+					{% comment %} <h4 class="msg-register">Ingresa para acceder a todas las funcionalidades.</h4> {% endcomment %}
 				{% endif %}
 				</ul>
 				{% if request.user.is_authenticated %}
@@ -147,8 +147,14 @@
             <div class="container-body">
                 <div class="column1">
                     <h1>Mas Información de la compañía</h1>
-                    <p>Esta compañía se dedica a la ... Relleno de texto Relleno de
-                        texto Relleno de texto Relleno de texto </p>
+                        <p>Como compañía buscamos promover la adopción de mascotas y disminuir la gran 
+                        cantidad de animales que deben sobrevivir en las calles. Nos comprometemos a 
+                        entregar los instrumentos necesarios a cada miembro de la comunidad para que puedan 
+                        postear sus dudas y conversar con los demás usuarios. Podrán publicar mascotas que 
+                        desean dar en adopción y también podrán adoptar las mascotas que publica el resto de 
+                        usuarios en la plataforma. </p>
+                        <p><strong>Encuentra a tu amigo ideal!
+                        <img src="https://cdn-icons-png.flaticon.com/128/676/676163.png" alt="dog-paw" height="25px"></strong></p>
                 </div>
                 <div class="column2">
                     <h1>Redes Sociales</h1>

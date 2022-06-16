@@ -1,6 +1,19 @@
 from django.db import models
 from ckeditor.fields import RichTextField
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
+
+# https://www.youtube.com/watch?v=Ae7nc1EGv-A
+# https://www.youtube.com/watch?v=sSKYEMEU-C8
+# https://docs.djangoproject.com/es/4.0/topics/auth/customizing/
+
+# class CustomUser(AbstractUser):
+#     phone = models.CharField(max_length=15, verbose_name='Celular')
+
+#     class Meta:
+#         verbose_name = 'Celular'
+
+#     def __str__(self):
+#         return self.phone
 
 class Category(models.Model):
     name = models.CharField(max_length=100, verbose_name='Nombre')

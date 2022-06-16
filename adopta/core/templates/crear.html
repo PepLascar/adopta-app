@@ -1,10 +1,9 @@
 {% extends 'social/layout.html' %}
 {#{% load filters %}#}
-
 {% block title %} Formularios Artículos {% endblock title %}
 {% block content %}
     {% if form.errors %}
-    <strong class="rojo"> Hay errores en el Formulario {{ form.errors }} </strong>
+        <strong class="rojo"> Hay errores en el Formulario {{ form.errors }} </strong>
     {% endif %}
 
 <form class='form' method='POST' enctype='multipart/form-data'>
@@ -21,9 +20,6 @@
     <label for="content">Déscribe a tu mascota: </label>
     <input type="text" name="content" required>
    
-    <label for="disponible">Disponible</label>
-    <input type="checkbox" name="disponible" required>
-
     <label for="image">Subir foto</label>
     <input id="image" type="file" name="image" required>
 

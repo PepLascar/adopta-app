@@ -5,14 +5,19 @@
     <h1>Me llamo</h1>
     <h1>{{ pet.title }}</h1>
     <br>
-    {{ pet.content }}
+        {{ pet.content }}
     <br>
-    {{ pet.disponible }}
+        {{ pet.disponible }}
     <br>
-    {{ pet.created_at }}
+        {{ pet.created_at }}
     <h1>Dueño {{ owner }}</h1>
-    <h1>Email {{ owner.email }}</h1>    
+    <h1>Email {{ owner.email }}</h1>
     <img src='https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=https://google.cl' alt="qr">
-</div>
- 
+    {% if request.user.is_authenticated %}
+        {% if user == owner %}
+            <a href="{% url 'editPet' pet.articuloid  %}" id="boton-post" class="btn btn-outline-success">Editar</a>
+            <a href="{% url 'eliminar' pet.articuloid  %}" id="boton-post" class="btn btn-outline-danger">Eliminar</a>
+        {% endif %}
+    {% endif %}
+    </div>
 {% endblock %}

@@ -422,6 +422,7 @@ footer{
   font-size: 14px;
   color: #c7c7c7;
   margin-top: 20px;
+  text-align: justify;
 }
 .column2 {
   max-width: 400px;

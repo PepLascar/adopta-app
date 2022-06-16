@@ -93,23 +93,23 @@ def category(req, category_id):
         #'articles': articles
     })
 
-@login_required
-def profile(request, username=None):  #obteniendo perfil de los usuarios, vía url que visitan
-	current_user = request.user #usuario logueda
-	if username and username != current_user.username:
-		user = User.objects.get(username=username)#revisar si quiero visitar un usuario cualquiera
-		posts = user.posts.all()
-		userId = request.user.id
-		pet = Article.objects.all().filter(user_id=user)
-	else:
-		posts = current_user.posts.all()#mostrar todos los post que el usuario ha hecho
-		user = current_user
-		userId = request.user.id
-		pet = Article.objects.all().filter(user_id=userId)
-		print(pet)		
-	return render(request, 'social/profile.html', {'user':user, 'posts':posts, 'pet':pet})
+# @login_required
+# def profile(request, username=None):  #obteniendo perfil de los usuarios, vía url que visitan
+# 	current_user = request.user #usuario logueda
+# 	if username and username != current_user.username:
+# 		user = User.objects.get(username=username)#revisar si quiero visitar un usuario cualquiera
+# 		posts = user.posts.all()
+# 		userId = request.user.id
+# 		pet = Article.objects.all().filter(user_id=user)
+# 	else:
+# 		posts = current_user.posts.all()#mostrar todos los post que el usuario ha hecho
+# 		user = current_user
+# 		userId = request.user.id
+# 		pet = Article.objects.all().filter(user_id=userId)
+# 		print(pet)		
+# 	return render(request, 'social/profile.html', {'user':user, 'posts':posts, 'pet':pet})
     
-# @login_required(login_url='login')
+@login_required
 def stats(req):
     username = req.user.username #usuario logueda
     # print(f'{username} (Antes del if else)')
@@ -134,9 +134,3 @@ def stats(req):
     else:
         print(f'Current user: {username} (ELSE)')
         return redirect('listar')
-
-# user = authenticate(username='john', password='secret')
-# if user is not None:
-#     # A backend authenticated the credentials
-# else:
-#     # No backend authenticated the credentials

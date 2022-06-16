@@ -5,9 +5,9 @@
 <div class="profile">
 	<img src="{{ user.profile.image.url }}">
 	{% if request.user.is_authenticated %}
-	{% if user.username and request.user.username == user.username %}
-	<a type="button" id="btn-edit" class="btn btn-light" href="{% url 'editProfile' user.pk %}">Editar foto perfil</a>
-	{% endif %}
+		{% if user.username and request.user.username == user.username %}
+			<a type="button" id="btn-edit" class="btn btn-light" href="{% url 'editProfile' user.pk %}">Editar foto perfil</a>
+		{% endif %}
 	{% endif %}
 	<h2>@{{ user.username }}</h2>
 	{% if request.user.is_authenticated %}
@@ -43,17 +43,9 @@
 {{ block.super }}	
 {% for i in pet %}
 	<div id="card-profile" class="card">
-		<a href="..">
-			<img class="publicaciones" alt="Qries" src="/media/{{i.image}}"  width="250" height="250">
-		</a>
-		<div class="card-img-overlay">
-			{% if request.user.is_authenticated and user.username == request.user.username %}		
-			<a href="{% url 'editPet' i.articuloid  %}" id="boton-post" class="btn btn-outline-success">Editar</a>		
-			<a href="{% url 'eliminar' i.articuloid  %}" id="boton-post" class="btn btn-outline-danger">Eliminar</a> 
-			{% endif %}
-		</div>
+		<a href="/petProfile/{{i.articuloid}}"> <img class="publicaciones" alt="Qries" src="/media/{{i.image}}"  width="250" height="250"></a>
 	</div>
-	{% endfor %}
+{% endfor %}
 
 	{% for m in messages %}
 		<script>
