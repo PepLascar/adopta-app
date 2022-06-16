@@ -82,7 +82,8 @@ img{
 }
 
 /* Mostrar el menu del dropdown en hover */
-.dropdown:hover .dropdown-content {display: block;
+.dropdown:hover .dropdown-content {
+  display: block;
   border-radius: 20px;}
 
 /* Cambiar background-color del boton dropdown cuando el contenido es mostrado */
@@ -100,7 +101,7 @@ img{
   padding-right: 80px;
 }
 #logo{
-  background: linear-gradient(to right, orange,#331e25);
+  background: linear-gradient(to right, #920735,rgb(239, 166, 29));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 25px;
@@ -150,11 +151,10 @@ a:hover{
   margin-top: 40px;
 }
 #alerta-carousel{
-  
   border-color: #800040;
   color: white;
   border-width: 3px;
-  background-image: linear-gradient(to top right,#641c34,#2f0715);
+  background-image: linear-gradient(to right,#641c34,#2f0715);
 }
 /* NAVIGATION BAR */
 .second-nav{
@@ -287,6 +287,7 @@ time {
   background: none;
   /*text-shadow: 2px 0 0 #7A9D96, -2px 0 0 #7A9D96, 0 2px 0 #7A9D96, 0 -2px 0 #7A9D96, 1px 1px #7A9D96, -1px -1px 0 #7A9D96, 1px -1px 0 #7A9D96, -1px 1px 0 #7A9D96;*/
   text-shadow: 2px 0 0 #641C34, -2px 0 0 #641C34, 0 2px 0 #641C34, 0 -2px 0 #641C34, 1px 1px #641C34, -1px -1px 0 #641C34, 1px -1px 0 #641C34, -1px 1px 0 #641C34;
+  transition: 0.3s ease;
 }
 /* Followers / Following / Post */
 .follow{
@@ -381,6 +382,23 @@ button#submit:hover {
   color: grey;
 }
 
+/*PET PROFILE*/
+#pet-profile{
+  text-align: center;
+  padding-top: 10%;
+  font-size: 12px;
+}
+
+.pet-image{
+  float: left;
+  margin-left: 5%;
+  width: 400px;
+  height: 400px;
+  margin-top: 10%;
+  border-radius: 8px;
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.15);
+}
+
 /*Vista Logout*/
 #msg-logout{
   padding-right: 20px;
@@ -430,6 +448,11 @@ footer{
 .column2 h1{
   font-size: 22px;
 }
+.column2 a:hover{
+  background-color: rgb(236, 232, 226);
+  transition: 0.5s ease;
+  border-radius: 20px;
+}
 .row{
   margin-top: 20px;
   display: flex;
@@ -472,16 +495,16 @@ footer{
   display: flex;
   justify-content: space-between;
 }
+
 .footer{
-  max-width: 1200px;
   margin: auto;
   display: flex;
   justify-content: space-between;
-  padding: 20px;
 }
+
 .copyright{
   color: #c7c7c7;
-  padding-right: 170px;
+  padding-top: 10px;
 }
 .copyright a{
   text-decoration: none;
@@ -504,18 +527,3 @@ footer{
   }
 }
 
-/*PET PROFILE*/
-.pet-profile{
-  text-align: center;
-  padding-top: 5%;
-  padding-bottom: 10%;
-}
-
-.pet-image{
-  float: left;
-  margin-left: 5%;
-  width: 400px;
-  height: 400px;
-  border-radius: 8px;
-  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.15);
-}
