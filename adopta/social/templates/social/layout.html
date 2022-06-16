@@ -14,7 +14,7 @@
 		integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
 		crossorigin="anonymous"></script>
 		<link rel="stylesheet" type="text/css" href="{% static 'normalize.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
 </head>
 <body>
 	<header class="main-head">
@@ -31,7 +31,7 @@
 				</ul>
 				{% if request.user.is_authenticated %}
 				<li class="nav-item">
-			  	<a class="nav-link" href="{% url 'listar' %}">!Quiero Adoptar¡</a>
+			  	<a class="nav-link" href="{% url 'listar' %}">¡Quiero Adoptar!</a>
 				</li>
 				<li class="dropdown">
 					<button class="dropbtn"><a class="nav-link"
@@ -174,7 +174,7 @@
                 <div class="column3">
                     <h1>Información de Contactos</h1>
                     <div class="row2">
-                        <img src="https://cdn-icons.flaticon.com/png/128/5974/premium/5974636.png?token=exp=1655419589~hmac=4e7a0349ca41f64c6886d6f777e03d39">
+                        <img src="https://cdn-icons-png.flaticon.com/128/2200/2200480.png">
                         <label>Av. Américo Vespucio 1501, Los Cerrillos,
                             Cerrillos, Región Metropolitana</label>
                     </div>
@@ -193,7 +193,7 @@
         <div class="container-footer">
             <div class="footer">
                 <div class="copyright">
-                    <p>© 2022 Todos los Derechos Reservados | Rhino</p>
+                    <p>© 2022 Todos los Derechos Reservados | Rhino Systems</p>
                 </div>
             </div>
         </div>

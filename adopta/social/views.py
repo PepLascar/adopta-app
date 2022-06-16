@@ -94,23 +94,22 @@ def editProfile(request, pk):
 	datos = {
 		'form': EditForm(instance=perfil)
 	}
+	current_user = request.user.id
+	profileId = perfil.id
+
 	if request.method == 'POST':
 		formulario_edit = EditForm(data=request.POST, instance=perfil, files=request.FILES)  #conjunto de datos a grabar, mediante la instancia del objeto
-		data=request.POST
-		files=request.FILES
-		if formulario_edit.is_bound == False:		
-			formulario_edit.save()
-			messages.success(request, 'Foto de perfil editada') #REVISAR QUE ESTABA HACIENDO ACA
-			print('FALSE')
-			print(data)			
-			return redirect('profile')
-		if formulario_edit.is_bound == True:		
+		data = request.POST
+		files = request.FILES
+
+		if formulario_edit.is_bound == True and profileId == current_user:
 			formulario_edit.save()
 			messages.success(request, 'Foto de perfil editada')
 			print('TRUE')
 			print(data)
 			return redirect('profile')
-	print('con 99')
+		else:
+			print('El usuario no tiene permisos para editar')
 	return render(request, 'social/editar.html', datos)
 
 def eliminarpost(req):

@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/carousel.css">
-    <title>Listado</title>
+    <link rel="stylesheet" href="../static/css/carousel2.css">
 </head>
 
 <body>
@@ -22,27 +20,20 @@
                     </path>
                 </svg>
             </button>
-
-
             <div class="slick-track" id="track">
-
                 {% for article in articles %} {#Recorrer lista de artículos#}
                 <div class="slick">
                     <div>
                         <a href="/petProfile/{{article.articuloid}}">
-                            <h4><small><strong>{{article.title}}</strong></small>N° {{article.articuloid}}</h4>
+                            <h4><strong>{{article.title}}</strong></h4>
                             <picture>
                                 <img src="{{article.image.url}}" alt="Image" width="250px" height="250px">
                             </picture>
                         </a>
                     </div>
                 </div>
-
                 {% endfor %}
-
             </div>
-
-
             <button class="slick-arrow slick-next" id="button-next" data-button="button-next"
                 onclick="app.processingButton(event)">
                 <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right"
@@ -54,7 +45,6 @@
                 </svg>
             </button>
         </div>
-
     </div>
     <script defer src="../static/js/carousel.js"></script>
 </body>
