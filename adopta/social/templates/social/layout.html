@@ -15,11 +15,12 @@
 		crossorigin="anonymous"></script>
 		<link rel="stylesheet" type="text/css" href="{% static 'normalize.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'home.css' %}">
 </head>
 <body>
 	<header class="main-head">
 		<ul id="main-nav" class="nav nav-tabs">
-			<h1 id="logo">Adopta <img src="https://cdn-icons-png.flaticon.com/128/1167/1167679.png" alt="" height="40px"></h1>
+			<a href="{% url 'home' %}"><h1 id="logo">Adopta <img src="https://cdn-icons-png.flaticon.com/128/1167/1167679.png" alt="" height="40px"></h1></a>
 			<ul>
 				{% if user.username and request.user.username == user.username %} <!--Verificar si el mail del usuario existe-->
 				<!--<h2>Bienvenido, {{user.username}}.</h2>-->

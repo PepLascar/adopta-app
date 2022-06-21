@@ -7,8 +7,13 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required #Decoradores
 from .forms import RegisterForm, FormArticle #RegisterForm de forms.py
 from .models import Category, Article
+from social.models import Post
 
 # https://simpleisbetterthancomplex.com/tutorial/2017/02/18/how-to-create-user-sign-up-view.html
+
+def home(req):
+    return render(req, 'home.html')
+
 
 def listar(req):
     articles = Article.objects.all() # Traer/obtener todos los objetos (articulos)
@@ -117,10 +122,24 @@ def stats(req):
 
     disponibles = Article.objects.all().filter(disponible=1).count()
     noDisp = Article.objects.all().filter(disponible=0).count()
+    totalAnimales = Article.objects.all().count()
+    perros = Article.objects.all().filter(categories_id=1).count()
+    gatos = Article.objects.all().filter(categories_id=2).count()
+    otros = Article.objects.all().filter(categories_id=3).count()
+
+    totalUsuarios = User.objects.all().count()
+
+    totalFeed = Post.objects.all().count()
 
     data = {
         'disp': disponibles,
-        'noDisp': noDisp
+        'noDisp': noDisp,
+        'totalAnimales': totalAnimales,
+        'perros': perros,
+        'gatos': gatos,
+        'otros': otros,
+        'totalUsuarios': totalUsuarios,
+        'totalFeed': totalFeed
     }
 
     # print(f'Mascotas disponibles {disponibles}')

@@ -2,37 +2,145 @@
 {#{% load filters %}#}
 {% block title %} Adopta Administrador {% endblock title %}
 {% block content %}
-    <head>
-      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-      <script type="text/javascript">
-        google.charts.load("current", {packages:['corechart']});
-        google.charts.setOnLoadCallback(drawChart);
-        function drawChart() {
-          var data = google.visualization.arrayToDataTable([
-            ["Element", "Density", { role: "style" } ],
-            ["Disponibles", {{ disp }}, "gold"],
-            ["Adoptadas", {{ noDisp }}, "color: #e5e4e2"]
-          ]);
-    
-          var view = new google.visualization.DataView(data);
-          view.setColumns([0, 1,
-                           { calc: "stringify",
-                             sourceColumn: 1,
-                             type: "string",
-                             role: "annotation" },
-                           2]);
-    
-          var options = {
-            title: "Mascotas registradas en la plataforma versus mascotas adoptadas",
-            width: 600,
-            height: 400,
-            bar: {groupWidth: "95%"},
-            legend: { position: "none" },
-          };
-          var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
-          chart.draw(view, options);
-      }
-      </script>
-    </head>
-  <div id="columnchart_values" style="width:50%; height:50%;"></div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+  google.charts.load("current", { packages: ['corechart'] });
+  google.charts.setOnLoadCallback(drawChart);
+
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+      ["Elemento", "Densidad", { role: "style" }],
+      ["Disponibles", {{ disp }}, "gold"],
+  ["Adoptadas", {{ noDisp }}, "color: #e5e4e2"]
+    ]);
+
+  var view = new google.visualization.DataView(data);
+  view.setColumns([0, 1,
+    {
+      calc: "stringify",
+      sourceColumn: 1,
+      type: "string",
+      role: "annotation",
+    },
+    2]);
+
+  var options = {
+    title: "Mascotas disponibles versus adoptadas",
+    width: 700,
+    height: 400,
+    bar: { groupWidth: "95%" },
+    legend: { position: "none" },
+  };
+  var chart = new google.visualization.ColumnChart(document.getElementById("bar-chart"));
+  chart.draw(data, options);
+}
+</script>
+
+<script type="text/javascript">
+  google.charts.load("current", { packages: ["corechart"] });
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+      ["Elemento", "Densidad", { role: "style" }],
+      ["Usuarios", {{ totalUsuarios }}, "#b87333"],
+  ["Feed de Comentarios", {{ totalFeed }}, "silver"]
+    ]);
+
+  var view = new google.visualization.DataView(data);
+  view.setColumns([0, 1,
+    {
+      calc: "stringify",
+      sourceColumn: 1,
+      type: "string",
+      role: "annotation"
+    },
+    2]);
+
+  var options = {
+    title: "Total de Usuarios versus Comentarios totales",
+    width: 700,
+    height: 400,
+    bar: { groupWidth: "95%" },
+    legend: { position: "none" },
+  };
+  var chart = new google.visualization.BarChart(document.getElementById("bar-chart2"));
+  chart.draw(view, options);
+}
+</script>
+
+<script type="text/javascript">
+  google.charts.load("current", { packages: ["corechart"] });
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+      ['Categoria', 'animales'],
+      ['Perros', {{ perros }}],
+  ['Gatos', {{ gatos }}],
+    ['Otros', {{ otros }}]
+    ]);
+
+  var options = {
+    width: 700,
+    height: 500,
+    legend: 'none',
+    pieSliceText: 'label',
+    title: 'Total de animales según su categoría',
+    pieStartAngle: 100,
+  };
+
+  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+  chart.draw(data, options);
+  }
+</script>
+
+
+
+<body>
+  <form action="" style="position: center ;">
+    <div id="bar-chart" style="width:50%; height:50%;"></div>
+    <hr>
+    <div id="bar-chart2" style="width:50%; height:50%;"></div>
+    <hr>
+    <div id="piechart" style="width: 500px; height: 500px;"></div>
+  </form>
+</body>
+
+<section class="stat" id="stats">
+  <div class="content-box">
+    <br><br>
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-3">
+          <div class="stat-item">
+            <img src="https://cdn-icons-png.flaticon.com/128/953/953810.png" alt="">
+            <h2><span class="counter text-center">{{totalFeed}}</span><span>+</span></h2>
+            <p><strong> Feed de Comentarios </strong></p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="stat-item">
+            <img src="https://cdn-icons-png.flaticon.com/128/64/64572.png" alt="">
+            <h2><span class="counter text-center">{{totalUsuarios}}</span><span>+</span></h2>
+            <p><strong> Comunidad de Usuarios </strong></p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="stat-item">
+            <img src="https://cdn-icons-png.flaticon.com/128/7819/7819263.png" alt="">
+            <h2><span class="counter text-center">{{totalAnimales}}</span><span>+</span></h2>
+            <p><strong> Mascotas Registradas </strong></p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="stat-item">
+            <img src="https://cdn-icons-png.flaticon.com/128/1152/1152755.png" alt="">
+            <h2><span class="counter text-center">{{noDisp}}</span><span>+</span></h2>
+            <p><strong> Mascotas Adoptadas</strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock %}

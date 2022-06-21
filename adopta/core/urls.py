@@ -4,7 +4,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', views.listar, name="listar"),
+    path('', views.home, name="home"),
+    path('listar/', views.listar, name="listar"),
     path('stats/', views.stats, name="stats"),
     path('crear/', views.crear, name="crear"),
     path('editPet/<pk>', views.editPet, name="editPet"),

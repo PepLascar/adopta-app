@@ -3,6 +3,16 @@ body{
 	font-size: 62.5%;
 	font-family: 'Varela Round', Helvetica, Arial, serif;
 }
+.main{
+	background: white;
+	width: 60%;
+	margin: 5% auto;
+	border-radius: 4px;
+	padding-bottom: 50px;
+  position: inherit;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
 /* Global Styles*/
 
 h5{
@@ -141,20 +151,11 @@ a:hover{
   color: #7A9D96;
 }
 
-.main{
-	background: white;
-	width: 60%;
-	margin: 5% auto;
-	border-radius: 4px;
-	padding-bottom: 20px;
-  position: inherit;
-  margin-top: 40px;
-}
 #alerta-carousel{
-  border-color: #800040;
+  border-color: #781737;
   color: white;
   border-width: 3px;
-  background-image: linear-gradient(to right,#641c34,#2f0715);
+  background-color: #781737;
 }
 /* NAVIGATION BAR */
 .second-nav{
@@ -413,6 +414,14 @@ button#submit:hover {
   text-align: center;
 }
 
+/* VISTA ADMIN STATS */
+.stat{
+  /*background-image: linear-gradient(to right,#641c34, rgb(239, 166, 29));*/
+  background-image: linear-gradient(#920735,rgb(239, 166, 29));
+  background-position: center;
+  border-radius: 90px;
+}
+
 /* FOOTER */
 footer{
   width: 100%;
@@ -465,7 +474,7 @@ footer{
   margin-top: 10px;
   margin-left: 10px;
   color: #c7c7c7;
-  font-size: 11px;
+  font-size: 14px;
 }
 .column3{
   max-width: 400px;
@@ -486,7 +495,7 @@ footer{
   margin-left: 20px;
   max-width: 170px;
   color: #c7c7c7;
-  font-size: 11px;
+  font-size: 14px;
   text-align: left;
 }
 .container-footer{
