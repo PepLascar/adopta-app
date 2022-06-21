@@ -2,21 +2,18 @@
 {% load humanize %}
 {% block content %}
 
-{% for post in posts %}
-<article>
-    <div class="container-article">
-        <!-- <img src="../../static/batman.png">  Mostrando imágen estáticamente-->
-        <img src=" {{ post.user.profile.image.url }} "> <!--Accediendo dínamicamente al campo en la bd que contiene la img-->
-        <div>
-            <h2 class="username"><a href="{% url 'profile' post.user.username %}">@{{ post.user.username }}</a></h2><!--redireccionar hacia ese usuario-->
-            <i class="clock"></i>
-            <time data-time="#">{{ post.timestamp|naturaltime }}</time>
-            <div class="post">{{ post.content }}</div>
+    {% for post in posts %}
+    <article>
+        <div class="container-article">
+            <!-- <img src="../../static/batman.png">  Mostrando imágen estáticamente-->
+            <img src=" {{ post.user.profile.image.url }} "> <!--Accediendo dínamicamente al campo en la bd que contiene la img-->
+            <div>
+                <h2 class="username"><a href="{% url 'profile' post.user.username %}">@{{ post.user.username }}</a></h2><!--redireccionar hacia ese usuario-->
+                <i class="clock"></i>
+                <time data-time="#">{{ post.timestamp|naturaltime }}</time>
+                <div class="post">{{ post.content }}</div>
+            </div>
         </div>
-    </div>
-</article>
-{% endfor %}
-
-
-
+    </article>
+    {% endfor %}
 {% endblock %}

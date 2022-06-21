@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.db.models import fields
-from .models import Post, Profile
+from .models import Post, Profile, Inbox
 
 class Formulario(UserCreationForm):
     username = forms.CharField(label='Usuario', max_length=30, required=True)
@@ -22,6 +22,14 @@ class PostForm(forms.ModelForm):
 	class Meta:
 		model = Post
 		fields = ['content']
+
+class InboxForm(forms.ModelForm):
+    content = forms.CharField(label='', widget=forms.Textarea(attrs={'rows':2, 'placeholder': '¿Qué está pasando?'}), required=True, max_length=220) #dandole formato al campo del formulario
+
+    class Meta:
+        model = Inbox
+        fields = ("content",)
+
 
 # Formulario editar view edit profile
 class EditForm(forms.ModelForm):

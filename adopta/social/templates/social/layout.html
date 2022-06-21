@@ -114,11 +114,16 @@
 		<nav class="second-nav">
 			{% if request.user.is_authenticated %}
 				<a class="feed" href="{% url 'feed' %}">Inicio</a>
-				{% if user.username and request.user.username == user.username %}
-					<!--<a class="feed" href="{% url 'editProfile' user.pk %}">Editar foto perfil</a>-->
-				{% endif %}
 				<a class="feed" href="{% url 'crear'%}">Publicar Mascotas</a>					
 				<a class="feed" href="{% url 'post' %}">Postea un mensaje...</a>
+				<a class="feed" href="{% url 'chats' %}">Mis mensajes</a>
+				
+				{% if user.username and request.user.username != user.username %}
+					<a class="feed" href="{% url 'inbox' user.pk %}">Enviar mensaje</a>	
+					{% comment %} <a class="feed" href="{% url 'editProfile' user.pk %}">Editar foto perfil</a> {% endcomment %}
+				{% endif %}		
+
+				{% comment %} <a class="feed" href="{% url 'inbox' user.id %}">Inbox</a> {% endcomment %}
 			{% endif %}
 		</nav>
 

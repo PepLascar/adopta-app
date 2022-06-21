@@ -29,6 +29,14 @@ class Post(models.Model):
     def __str__(self):  #si lo quito se refleja directamente como lo muestra en el admin
         return f'{self.user.username}: {self.content}'  #mostrar el contenido vinculado a un usuario, represetarlo en string
 
+class Inbox(models.Model):
+	sender  = models.ForeignKey(User, related_name='sender', on_delete=models.CASCADE)
+	to_user = models.ForeignKey(User, related_name='reciever', on_delete=models.CASCADE)
+	content = models.TextField(default=True)
+	created_at = models.DateTimeField(auto_now_add=True, null=True, verbose_name='Creado el')    #related name cambia el nombre en la template 
+
+	class Meta:
+		ordering = ['-created_at']
 
 class Relationship(models.Model):
 	from_user = models.ForeignKey(User, related_name='relationships', on_delete=models.CASCADE)
@@ -55,7 +63,6 @@ Trabajando con imágenes.
 
 Cargar CSS correctamente vía static hacia el layout
 
-
 Importe de vistas automáticas de login/logout
 en URL from django.contrib.auth.views import LoginView, LogoutView
 luego crear su respectivo path
@@ -71,7 +78,4 @@ Crear señales
     Para que el post se vincule al usuario
 
 Configurar cosas propias del usuario
-
-
-
 """

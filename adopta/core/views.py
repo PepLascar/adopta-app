@@ -134,3 +134,6 @@ def stats(req):
     else:
         print(f'Current user: {username} (ELSE)')
         return redirect('listar')
+
+def error404_view(request, exception):
+    return render(request, '404.html')

@@ -1,0 +1,68 @@
+{% extends 'social/layout.html' %}
+{% load humanize %}
+{% block content %}
+<form class='form' method='POST'>
+    {% csrf_token %}
+    <label for="content">Dile algo a  {{to}} </label>
+    <input type="text" name="content" required>
+    <button type='submit' class='inbox' id=''>Enviar</button>
+</form>
+
+    {% if request.user.is_authenticated %}
+        {% if user.username %}
+
+            {% comment %} {% for i in current_inbox %}
+                <h1>--{{inbox_sender.content}}</h1>
+                <h1>{{user.id}}|{{current}}</h1>
+                <h1>Sender id: {{i.sender_id}}</h1>
+                <h1>Para User id: {{i.to_user_id}}</h1>
+                <h1>{{i.content}}</h1>
+                <br><br>
+            {% endfor %} {% endcomment %}
+
+            {% comment %} {% for i in inbox_sender %}
+                {% if i.to_user_id == 3 %}
+                    <h1>{{i.content}}</h1>
+                    <h1>Sender id: {{i.sender_id}}</h1>
+                    <h1>Para User id: {{i.to_user_id}}</h1>
+                    <h1>------------------------------</h1>
+                {% endif %}
+            {% endfor %} {% endcomment %}
+
+{% comment %} Aqui obtengo lo que manda el usuario {% endcomment %}
+
+        <table class="table table-dark" >
+            <thead>
+            <tr>
+                <th scope="col">de</th>
+                <th scope="col">mensaje</th>
+                <th scope="col">fecha</th>
+            </tr>
+            </thead>
+            {% for i in inboxs %}
+                {% if i.sender_id == user.id and i.to_user_id == toId or i.sender_id == toId and i.to_user_id == user.id %}
+                    <tbody>
+                        <tr>
+                        <td>{{i.sender_id}}</td>
+                        <td>{{i.content}}</td>
+                        <td>{{i.created_at|naturaltime}}</td>
+                        </tr>
+                    </tbody>
+                    {% comment %} <h1>{{i.to_user_id}} | {{toId}}</h1> {% endcomment %}
+                    {% comment %} {% for j in inboxs %}
+                        {% if j.sender_id == toId and j.to_user_id == user.id %}
+                            <h1>{{j.content}}</h1>
+                            <h1>{{j.created_at}}</h1>
+                            <br>
+                        {% endif %}
+                    {% endfor %} {% endcomment %}
+                    {% comment %} <h1>Sender id: {{i.sender_id}}</h1>
+                    <h1>Para User id: {{i.to_user_id}}</h1>
+                    <h1>------------------------------</h1> {% endcomment %}
+                {% endif %}
+            {% endfor %}
+        </table>
+
+        {% endif %}
+    {% endif %}
+{% endblock %}

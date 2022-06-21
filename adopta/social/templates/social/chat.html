@@ -1,0 +1,52 @@
+{% extends 'social/layout.html' %}
+{% block content %}
+
+{% comment %} {% for i in inboxs %}
+    {% if i.to_user_id == user.id %}
+        <h1>Usuario logueado id: {{current_user.id}}<h1>
+        <h1>Sender_id: {{i.sender_id}}<h1>
+        <p>------------------------------------------<p>       
+    {% endif %}
+{% endfor %} {% endcomment %}
+
+{% comment %} {% for i in to_user %}
+    {% for j in users %}
+        {% if  j.id == i %}                     
+            <a type="button" class="btn btn-light" href="{% url 'inbox' i %}">{{j.username}}</a>
+            <br>
+        {% endif %}
+    {% endfor %}
+        <img src="{{ user.profile.image.url }}">
+        <img class="publicaciones" alt="Qries" src="/media/{{i.image}}"  width="250" height="250"></a>     
+        {{i}}<br>
+{% endfor %} {% endcomment %}
+
+{% comment %} {% for i in to_user %}
+    {% for x in sender_user %}
+        {% if current_user == i %}                     
+            <a type="button" class="btn btn-light" href="{% url 'inbox' i %}">{{i.username}}</a>
+            <a type="button" class="btn btn-light" href="{% url 'inbox' x %}">{{x.username}}</a>
+            <br>
+        {% endif %}
+    {% endfor %}
+{% endfor %} {% endcomment %}
+
+{% for k in senders %}
+    {% for j in users %}
+        {% if  j.id == k %}
+            <!-- <img src="{{ user.profile.image.url }}"> -->
+            <a type="button" class="btn btn-light" href="{% url 'inbox' k %}">{{j.username}}</a>
+            <br>
+        {% endif %}
+    {% endfor %}   
+{% endfor %}
+
+
+{% comment %} {% for k in sender_user %}
+    {% for j in users %}
+        {% if  j.id == k %}
+            <a type="button" class="btn btn-light" href="{% url 'inbox' k %}">{{j.username}}</a>
+        {% endif %}
+    {% endfor %}   
+{% endfor %} {% endcomment %}
+{% endblock %}
