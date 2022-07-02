@@ -1,0 +1,36 @@
+{% extends 'social/feed.html' %}
+{% block content %}
+{% load static %}
+<head>
+    <script src="https://kit.fontawesome.com/eb496ab1a0.js" crossorigin="anonymous"></script>
+</head>   
+    {% for i in pet %} {#Recorrer lista de artículos#}
+        <form action="https://formsubmit.co/{{i.user.email}}" method="POST">
+            <h2>Contactar</h2>
+            {% if i.image != 'null' and i.image.url|length >= 1 %} <!-- y es diferente a null si image existe lo va a mostrar-->              
+            <img src="{{i.image.url}}" width="260" height="260"> <!-- Con .url me saca la url del fichero donde se encuentra las imagenes-->                
+        {% endif %}
+        <br>
+        <br>
+          <label>Nombre</label>
+          <input type="text" name="Usuario" class="campo" readonly value="{{ user.username }}" >
+
+          <label>Correo Electrónico</label>
+          <input type="email" name="Correo_electronico" class="campo" readonly  value="{{ user.email }}">
+
+          <label>Asunto</label>
+          <input type="subject" name="Asunto" placeholder="Asunto" class="campo">
+
+          <label>Comentarios</label>
+          <textarea name="Comentarios" placeholder="Tu Mensaje..."></textarea>
+
+          <input type="hidden" name="Disponible" class="campo" readonly value="Recuerde dejar su mascota como no disponible al terminar la adopcion !" >         
+          {% comment %} <button type="submit" class="btn-enviar" disabled="True">Enviar</button> {% endcomment %}
+          <a href="{% url 'feed' %}" id="boton-post" class="btn btn-outline-success">Enviar correo</a>
+
+          
+          <input type="hidden" name="_next" value="http://127.0.0.1:8000/listar/" >
+          <input type="hidden" name="_captcha" value="false">
+     </form>
+    {% endfor %}
+{% endblock %}

@@ -14,7 +14,7 @@
 		integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
 		crossorigin="anonymous"></script>
 		<link rel="stylesheet" type="text/css" href="{% static 'normalize.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'home.css' %}">
 </head>
 <body>
@@ -32,7 +32,7 @@
 				</ul>
 				{% if request.user.is_authenticated %}
 				<li class="nav-item">
-			  	<a class="nav-link" href="{% url 'listar' %}">¡Quiero Adoptar!</a>
+			  	<a class="nav-link" href="{% url 'listar' %}">¡ Quiero Adoptar !</a>
 				</li>
 				<li class="dropdown">
 					<button class="dropbtn"><a class="nav-link"
@@ -42,7 +42,7 @@
 					</div>
 				</li>
 				<li class="nav-item">
-			  	<a class="nav-link" href="{% url 'logout' %}">Desconectar</a>
+			  	<a class="nav-link" href="{% url 'logout' %}">Desconectarme</a>
 				</li>
 				{% else %}
 				<li class="logout-nav"><a href="{% url 'login' %}">Ingresar</a></li>					
@@ -115,8 +115,7 @@
 		<nav class="second-nav">
 			{% if request.user.is_authenticated %}
 				<a class="feed" href="{% url 'feed' %}">Inicio</a>
-				<a class="feed" href="{% url 'crear'%}">Publicar Mascotas</a>					
-				<a class="feed" href="{% url 'post' %}">Postea un mensaje...</a>
+				<a class="feed" href="{% url 'crear'%}">Publicar Mascotas</a>
 				<a class="feed" href="{% url 'chats' %}">Mis mensajes</a>
 				
 				{% if user.username and request.user.username != user.username %}

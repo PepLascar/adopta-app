@@ -31,23 +31,25 @@
 
 {% comment %} Aqui obtengo lo que manda el usuario {% endcomment %}
 
-        <table class="table table-dark" >
-            <thead>
-            <tr>
-                <th scope="col">de</th>
-                <th scope="col">mensaje</th>
-                <th scope="col">fecha</th>
-            </tr>
-            </thead>
-            {% for i in inboxs %}
-                {% if i.sender_id == user.id and i.to_user_id == toId or i.sender_id == toId and i.to_user_id == user.id %}
-                    <tbody>
-                        <tr>
-                        <td>{{i.sender_id}}</td>
-                        <td>{{i.content}}</td>
-                        <td>{{i.created_at|naturaltime}}</td>
-                        </tr>
-                    </tbody>
+<div class="pos-chat" >
+    <table class="table">
+        <thead class="chat-head">
+        <tr>
+            <th scope="col">de</th>
+            <th scope="col">mensaje</th>
+            <th scope="col">enviado hace...</th>
+        </tr>
+        </thead>
+        {% for i in inboxs %}
+            {% if i.sender_id == user.id and i.to_user_id == toId or i.sender_id == toId and i.to_user_id == user.id %}
+                <tbody class="chat">
+                    <tr>
+                    <td>{{i.sender_id}}</td>
+                    <td>{{i.content}}</td>
+                    <td>{{i.created_at|naturaltime}}</td>
+                    </tr>
+                </tbody>
+
                     {% comment %} <h1>{{i.to_user_id}} | {{toId}}</h1> {% endcomment %}
                     {% comment %} {% for j in inboxs %}
                         {% if j.sender_id == toId and j.to_user_id == user.id %}

@@ -12,7 +12,7 @@ urlpatterns = [
     path('register/', views.register, name='register'),
 	path('login/', LoginView.as_view(template_name='social/login.html'), name='login'),
 	path('logout/', LogoutView.as_view(template_name='social/logout.html'), name='logout'),
-    path('post/', views.post, name='post'),
+    path('mail/<id>', views.mail, name='mail'),
     path('inbox/<id>', views.inbox, name='inbox'),
     path('chats/', views.chats, name='chats'),
     path('follow/<str:username>/', views.follow, name='follow'),

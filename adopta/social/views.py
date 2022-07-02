@@ -6,13 +6,35 @@ from .forms import EditForm, Formulario, PostForm, InboxForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.db.models.query_utils import DeferredAttribute
+from django.contrib.auth.views import LoginView
 
+@login_required
 def feed(request):
+
+
+	current_user = get_object_or_404(User, pk=request.user.pk)
 	posts = Post.objects.all()
-	context = {'posts': posts}
+	if request.method == 'POST':
+		form = PostForm(request.POST)
+		if form.is_valid():
+			post = form.save(commit=False)
+			post.user = current_user
+			post.save()
+			messages.success(request, 'Posteando ... ')
+			return redirect('feed')
+	else:
+		posting = True
+		form = PostForm()
+
+	context = {	'posts': posts, 
+				'form' : form,
+				'posting': posting }
 	return render(request, 'social/feed.html', context)
 
-# Perfil de una mascota
+def mail(request, id):
+	pet = Article.objects.filter(articuloid=id)
+	return render(request, 'social/mail.html', {'pet':pet})
+
 @login_required
 def petProfile(req, id):
 	pet = get_object_or_404(Article, articuloid=id)
@@ -36,21 +58,6 @@ def register(request):
 		form = Formulario()
 	context = {'form': form}
 	return render(request, 'social/register.html', context)
-
-@login_required
-def post(request):
-	current_user = get_object_or_404(User, pk=request.user.pk)
-	if request.method == 'POST':
-		form = PostForm(request.POST)
-		if form.is_valid():
-			post = form.save(commit=False)
-			post.user = current_user
-			post.save()
-			messages.success(request, 'Posteando ... ')
-			return redirect('feed')
-	else:
-		form = PostForm()
-	return render(request, 'social/post.html', {'form' : form })
 
 @login_required
 def inbox(request, id):
@@ -110,15 +117,15 @@ def chats(request):
 	return render(request, 'social/chat.html', {'to_user':to_user, 'sender_user':sender_user, 'current_user':current_user, 'inboxs':inboxs, 'users':users, 'senders':senders})
 
 @login_required
-def profile(request, username=None):  #obteniendo perfil de los usuarios, a trave´s de la url se visitan
-	current_user = request.user #usuario logueda
+def profile(request, username=None):  # obteniendo perfil de los usuarios, a trave´s de la url se visitan
+	current_user = request.user # usuario logueda
 	if username and username != current_user.username: 
-		user = get_object_or_404(User, username=username)#revisar si quiero visitar un usuario cuañquiera
+		user = get_object_or_404(User, username=username)# revisar si quiero visitar un usuario cuañquiera
 		posts = user.posts.all()
 		userId= request.user.id
 		pet= Article.objects.all().filter(user_id=user)
 	else:
-		posts = current_user.posts.all()#mostrar todos los post que el usuario ha hecho
+		posts = current_user.posts.all()# mostrar todos los post que el usuario ha hecho
 		user = current_user
 		userId= request.user.id
 		pet = Article.objects.all().filter(user_id=userId)

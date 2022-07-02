@@ -1,8 +1,18 @@
 {% extends 'social/layout.html' %}
 {% load humanize %}
+
+
 {% block content %}
 
-    {% for post in posts %}
+{% if posting == True %}
+    <form method='POST'>
+        {% csrf_token %}
+        {{ form.as_p}}
+            <button type='submit' class='post' id=''>Post!</button>
+    </form>
+{% endif %}
+
+{% for post in posts %}
     <article>
         <div class="container-article">
             <!-- <img src="../../static/batman.png">  Mostrando imágen estáticamente-->
@@ -15,5 +25,5 @@
             </div>
         </div>
     </article>
-    {% endfor %}
+{% endfor %}
 {% endblock %}
