@@ -10,8 +10,6 @@ from django.contrib.auth.views import LoginView
 
 @login_required
 def feed(request):
-
-
 	current_user = get_object_or_404(User, pk=request.user.pk)
 	posts = Post.objects.all()
 	if request.method == 'POST':
@@ -178,3 +176,4 @@ def editProfile(request, pk):
 
 def eliminarpost(req):
 	return None
+

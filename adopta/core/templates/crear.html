@@ -9,7 +9,7 @@
 <form class='form' method='POST' enctype='multipart/form-data'>
     {% csrf_token %}
     <label for="title">Nombre mascota: </label>
-    <input type="text" name="title" required>
+    <input type="text" name="title" placeholder="Me llamo..." required>
 
     <select for="categories" name="categories" class="custom-select mr-sm-2" id="cars">
         <option selected>Escoge..</option>
@@ -18,13 +18,13 @@
         <option value="3">Otro</option>
       </select>
     <br><br>
-    <label for="content">Déscribe a tu mascota: </label>
-    <input type="text" name="content" required>
+    <label for="content">Describe a tu mascota: </label>
+    <input type="text" name="content" placeholder="Escribe aquí sus características" required>
    
     <label for="image">Subir foto</label>
     <input id="image" type="file" name="image" required>
 
-    <button type='submit' id='submit'>Subir mascota</button>
+    <button type='submit' id='submit'>Publicar mi mascota en Adopta</button>
 </form>
 {% endblock %}
 

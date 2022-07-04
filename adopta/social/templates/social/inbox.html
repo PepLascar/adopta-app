@@ -33,20 +33,20 @@
 
 <div class="pos-chat" >
     <table class="table">
-        <thead class="chat-head">
+        {% comment %} <thead class="chat-head">
         <tr>
             <th scope="col">de</th>
             <th scope="col">mensaje</th>
             <th scope="col">enviado hace...</th>
         </tr>
-        </thead>
+        </thead> {% endcomment %}
         {% for i in inboxs %}
             {% if i.sender_id == user.id and i.to_user_id == toId or i.sender_id == toId and i.to_user_id == user.id %}
                 <tbody class="chat">
                     <tr>
-                    <td>{{i.sender_id}}</td>
+                    {% comment %} <td>{{i.sender_id}}</td>
                     <td>{{i.content}}</td>
-                    <td>{{i.created_at|naturaltime}}</td>
+                    <td>{{i.created_at|naturaltime}}</td> {% endcomment %}
                     </tr>
                 </tbody>
 
@@ -64,6 +64,77 @@
                 {% endif %}
             {% endfor %}
         </table>
+
+        
+<div class="panel-chat-usuarios">
+    <div class="panel-chat-header">
+        <div class="panel-chat-botones">
+            <button class="botones-chat" type="button">
+                <i class="fas fa-angle-down"></i>
+            </button>
+            <button class="botones-chat" type="button">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+    <div class="panel-chat-datos">
+        <div class="chat-avatar">
+            <img src="https://picsum.photos/200/200">
+            <span class="estado-usuario"></span>
+        </div>
+        <div class="datos-usuario">
+            <h5>Conversando con</h5>
+            <p>Usuario</p>
+        </div>
+    </div>
+
+<!--Mensajes-->
+<div class="panel-chat-body">
+{% for i in inboxs %}
+    {% if i.sender_id == user.id and i.to_user_id == toId or i.sender_id == toId and i.to_user_id == user.id %}
+    <!-- mensaje derecha -->
+    {% if i.sender_id == toId and i.to_user_id == user.id %}
+    <div class="panel-msj-der">
+        <div class="chat-cuerpo">
+            <div class="contenedor-msj">
+                <td>{{i.created_at|naturaltime}}</td>
+            </div>
+            <div class="contenedor-msj-footer">
+                <ul class="botones-footer">
+                    <li>
+                        <i class="fas fa-eye"></i>
+                    </li>
+                    <td>{{i.sender_id}}</td>
+                    <td>{{i.content}}</td>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endif %}
+    <!-- mensaje izquierda -->
+    {% if  i.sender_id == user.id and i.to_user_id == toId %}
+        <div class="panel-msj-izq">
+            <div class="chat-cuerpo">
+                <div class="contenedor-msj">
+                    <td>{{i.created_at|naturaltime}}</td>
+                </div>
+                <div class="contenedor-msj-footer">
+                    <ul class="botones-footer">
+                        <li>
+                            <i class="fas fa-eye"></i>
+                        </li>
+                        <td>{{i.sender_id}}</td>
+                        <td>{{i.content}}</td>                       
+                        </tr>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    {% endif %}
+{% endfor %}
+</div>
 
         {% endif %}
     {% endif %}

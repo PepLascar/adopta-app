@@ -40,13 +40,12 @@
 		<p>{{ user.profile.following.count }}</p>
 	</div>
 </div>
-{{ block.super }}	
 {% for i in pet %}
 	<div id="card-profile" class="card">
 		<a href="/petProfile/{{i.articuloid}}"> <img class="publicaciones" alt="Qries" src="/media/{{i.image}}"  width="250" height="250"></a>
 	</div>
 {% endfor %}
-
+{{ block.super }}	
 	{% for m in messages %}
 		<script>
 			Swal.fire({

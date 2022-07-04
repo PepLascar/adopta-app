@@ -135,7 +135,7 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-LOGIN_REDIRECT_URL = 'feed'
+LOGIN_REDIRECT_URL = 'home'
 LOGIN_URL = 'login'
 
 # Default primary key field type
