@@ -14,7 +14,7 @@
 		integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
 		crossorigin="anonymous"></script>
 		<link rel="stylesheet" type="text/css" href="{% static 'normalize.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'styl.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'home.css' %}">
 </head>
 <body>
@@ -29,11 +29,16 @@
 				{% else %}
 					{% comment %} <h4 class="msg-register">Ingresa para acceder a todas las funcionalidades.</h4> {% endcomment %}
 				{% endif %}
-				</ul>
+			</ul>
+				{% if user.username == 'admin' %}
+				<li class="nav-item">
+					<a class="nav-link" href="{% url 'stats' %}">Métricas</a>
+				</li>	
+				{% endif %}	
 				{% if request.user.is_authenticated %}
 				<li class="nav-item">
-			  	<a class="nav-link" href="{% url 'listar' %}">¡ Quiero Adoptar !</a>
-				</li>
+			  		<a class="nav-link" href="{% url 'listar' %}">¡ Quiero Adoptar !</a>
+				</li>	
 				<li class="dropdown">
 					<button class="dropbtn"><a class="nav-link"
 						href="{% url 'profile' request.user.username %}">Mi Perfil</a></button>

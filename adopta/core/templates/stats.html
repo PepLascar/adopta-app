@@ -4,6 +4,8 @@
 {% block content %}
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<div class="grafico-stats">
 <script type="text/javascript">
   google.charts.load("current", { packages: ['corechart'] });
   google.charts.setOnLoadCallback(drawChart);
@@ -12,7 +14,7 @@
     var data = google.visualization.arrayToDataTable([
       ["Elemento", "Densidad", { role: "style" }],
       ["Disponibles", {{ disp }}, "gold"],
-  ["Adoptadas", {{ noDisp }}, "color: #e5e4e2"]
+      ["Adoptadas", {{ noDisp }}, "color: #e5e4e2"]
     ]);
 
   var view = new google.visualization.DataView(data);
@@ -36,7 +38,9 @@
   chart.draw(data, options);
 }
 </script>
+</div>
 
+<div class="grafico-stats">
 <script type="text/javascript">
   google.charts.load("current", { packages: ["corechart"] });
   google.charts.setOnLoadCallback(drawChart);
@@ -44,7 +48,7 @@
     var data = google.visualization.arrayToDataTable([
       ["Elemento", "Densidad", { role: "style" }],
       ["Usuarios", {{ totalUsuarios }}, "#b87333"],
-  ["Feed de Comentarios", {{ totalFeed }}, "silver"]
+      ["Feed de Comentarios", {{ totalFeed }}, "silver"]
     ]);
 
   var view = new google.visualization.DataView(data);
@@ -68,6 +72,7 @@
   chart.draw(view, options);
 }
 </script>
+</div>
 
 <script type="text/javascript">
   google.charts.load("current", { packages: ["corechart"] });
@@ -76,8 +81,8 @@
     var data = google.visualization.arrayToDataTable([
       ['Categoria', 'animales'],
       ['Perros', {{ perros }}],
-  ['Gatos', {{ gatos }}],
-    ['Otros', {{ otros }}]
+      ['Gatos', {{ gatos }}],
+      ['Otros', {{ otros }}]
     ]);
 
   var options = {
@@ -94,14 +99,15 @@
   }
 </script>
 
-
-
 <body>
   <form action="" style="position: center ;">
     <div id="bar-chart" style="width:50%; height:50%;"></div>
-    <hr>
+      <h1>Mascotas disponible {{porcentajePetAdoptadas}}%</h1>
+      <h1>Promedio de mascotas publicadas por usuario {{promedioMascotasUsuario}}</h1>
+      <hr>
     <div id="bar-chart2" style="width:50%; height:50%;"></div>
-    <hr>
+      <h1>Promedio mensajes por usuario registrado {{porcentajeMensajesUsuario}}</h1>
+      <hr>
     <div id="piechart" style="width: 500px; height: 500px;"></div>
   </form>
 </body>

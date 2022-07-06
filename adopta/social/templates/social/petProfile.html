@@ -1,22 +1,44 @@
 {% extends 'social/feed.html' %}
 {% block content %}
+
+{% block js %}
+<script>
+  function eliminarProducto(articuloid){
+      Swal.fire({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = "/eliminar/"+articuloid
+          }
+        })
+  }
+</script>
+{% endblock %}
+
 <img class="pet-image" src="/media/{{pet.image}}">
-<ul id="pet-profile" class="list-group list-group-flush">
+<ul id="pet-profile" class="list-group list-group-flush" list-style:'none'>
     <li class="list-group-item">Me llamo {{ pet.title }}</li>
     <li class="list-group-item">{{ pet.content }}</li>
     <!-- <li class="list-group-item">Estado: {{ pet.disponible }}</li> -->
     <li class="list-group-item">Publicado el {{ pet.created_at }}</li>
     <li class="list-group-item">Mi dueño actual es {{ owner }}</li>
     <li class="list-group-item">Contáctame a {{ owner.email }}</li>
-    <li><img src='https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=https://google.cl' alt="qr"></li>
+    <li><img src='https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=https://registratumascota.cl/inicio.xhtml' alt="qr"></li>
     <li class="list-group"><a href="{% url 'mail' pet.articuloid %}"><button>Contactar al dueño</button></a></li>
-    
 </ul>
     {% if request.user.is_authenticated %}
         {% if user == owner %}
             <a href="{% url 'editPet' pet.articuloid  %}" id="boton-post" class="btn btn-outline-success">Editar</a>
-            <a href="{% url 'eliminar' pet.articuloid  %}" id="boton-post" class="btn btn-outline-danger">Eliminar</a>
+            {% comment %} <a href="{% url 'eliminar' pet.articuloid %}" id="boton-post" class="btn btn-outline-danger">Eliminar</a> {% endcomment %}
+            <a href="#" onclick="eliminarProducto({{pet.articuloid}})" id="boton-post" class="btn btn-outline-danger">Eliminar</a>
         {% endif %}
     {% endif %}
+
 
 {% endblock %}

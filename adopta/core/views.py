@@ -32,7 +32,7 @@ def crear(req):
             title = data_form.get('title')
             categories = data_form.get('categories')
             content = data_form.get('content') # Variables para recoger la información del cleaned data
-            disponible = data_form['disponible']
+            disponible = 1
             image = data_form.get('image')
                             
             articulo = Article(
@@ -40,7 +40,7 @@ def crear(req):
                 title = title,
                 categories = categories,
                 content = content,
-                disponible = disponible,
+                disponible = 1,
                 image = image
             )
             articulo.save()           
@@ -113,7 +113,7 @@ def category(req, category_id):
 # 		pet = Article.objects.all().filter(user_id=userId)
 # 		print(pet)		
 # 	return render(request, 'social/profile.html', {'user':user, 'posts':posts, 'pet':pet})
-    
+
 @login_required
 def stats(req):
     username = req.user.username #usuario logueda
@@ -126,10 +126,12 @@ def stats(req):
     perros = Article.objects.all().filter(categories_id=1).count()
     gatos = Article.objects.all().filter(categories_id=2).count()
     otros = Article.objects.all().filter(categories_id=3).count()
-
     totalUsuarios = User.objects.all().count()
-
     totalFeed = Post.objects.all().count()
+
+    promedioMascotasUsuario = round(totalAnimales/totalUsuarios, 1)
+    porcentajePetAdoptadas = round((disponibles/totalAnimales)*100, 1)
+    promedioMensajesUsuario = round((totalFeed/totalUsuarios), 1)
 
     data = {
         'disp': disponibles,
@@ -139,9 +141,11 @@ def stats(req):
         'gatos': gatos,
         'otros': otros,
         'totalUsuarios': totalUsuarios,
-        'totalFeed': totalFeed
+        'totalFeed': totalFeed,
+        'porcentajePetAdoptadas':porcentajePetAdoptadas,
+        'promedioMensajesUsuario':promedioMensajesUsuario,
+        'promedioMascotasUsuario':promedioMascotasUsuario
     }
-
     # print(f'Mascotas disponibles {disponibles}')
     # print(f'Mascotas no disponibles {noDisp}')
     # tot = Article.objects.annotate(Count('disponible'))

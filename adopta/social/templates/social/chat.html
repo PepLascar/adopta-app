@@ -1,6 +1,6 @@
 {% extends 'social/layout.html' %}
 {% block content %}
-<h1>Conversaciones recientes</h1>
+
 {% comment %} {% for i in inboxs %}
     {% if i.to_user_id == user.id %}
         <h1>Usuario logueado id: {{current_user.id}}<h1>
@@ -30,16 +30,27 @@
         {% endif %}
     {% endfor %}
 {% endfor %} {% endcomment %}
+<div class="inbox">
+    {% if senders %}
+        <h1>Conversaciones recientes</h1>
+    {% else %}
+        <h1>No tienes mensajes</h1>
+    {% endif %}
 
-{% for k in senders %}
-    {% for j in users %}
-        {% if  j.id == k %}
-            <!-- <img src="{{ user.profile.image.url }}"> -->
-            <a type="button" class="btn btn-light" href="{% url 'inbox' k %}">{{j.username}}</a>
-            <br>
-        {% endif %}
-    {% endfor %}   
-{% endfor %}
+    {% for k in senders %}
+        {% for j in users %}
+            {% if  j.id == k %}
+                    <a href="{% url 'inbox' k %}">
+                        <img src="{{j.profile.image.url}}" >
+                    </a>
+                <a type="button" class="btn btn-light" href="{% url 'inbox' k %}">{{j.username}}</a>
+                <hr>
+                <br>
+                <br>
+            {% endif %}
+        {% endfor %}   
+    {% endfor %}
+</div>
 
 {% comment %} {% for k in sender_user %}
     {% for j in users %}

@@ -1,141 +1,73 @@
 {% extends 'social/layout.html' %}
 {% load humanize %}
 {% block content %}
-<form class='form' method='POST'>
-    {% csrf_token %}
-    <label for="content">Dile algo a  {{to}} </label>
-    <input type="text" name="content" required>
-    <button type='submit' class='inbox' id=''>Enviar</button>
-</form>
-
-    {% if request.user.is_authenticated %}
-        {% if user.username %}
-
-            {% comment %} {% for i in current_inbox %}
-                <h1>--{{inbox_sender.content}}</h1>
-                <h1>{{user.id}}|{{current}}</h1>
-                <h1>Sender id: {{i.sender_id}}</h1>
-                <h1>Para User id: {{i.to_user_id}}</h1>
-                <h1>{{i.content}}</h1>
-                <br><br>
-            {% endfor %} {% endcomment %}
-
-            {% comment %} {% for i in inbox_sender %}
-                {% if i.to_user_id == 3 %}
-                    <h1>{{i.content}}</h1>
-                    <h1>Sender id: {{i.sender_id}}</h1>
-                    <h1>Para User id: {{i.to_user_id}}</h1>
-                    <h1>------------------------------</h1>
-                {% endif %}
-            {% endfor %} {% endcomment %}
-
-{% comment %} Aqui obtengo lo que manda el usuario {% endcomment %}
-
-<div class="pos-chat" >
-    <table class="table">
-        {% comment %} <thead class="chat-head">
-        <tr>
-            <th scope="col">de</th>
-            <th scope="col">mensaje</th>
-            <th scope="col">enviado hace...</th>
-        </tr>
-        </thead> {% endcomment %}
-        {% for i in inboxs %}
-            {% if i.sender_id == user.id and i.to_user_id == toId or i.sender_id == toId and i.to_user_id == user.id %}
-                <tbody class="chat">
-                    <tr>
-                    {% comment %} <td>{{i.sender_id}}</td>
-                    <td>{{i.content}}</td>
-                    <td>{{i.created_at|naturaltime}}</td> {% endcomment %}
-                    </tr>
-                </tbody>
-
-                    {% comment %} <h1>{{i.to_user_id}} | {{toId}}</h1> {% endcomment %}
-                    {% comment %} {% for j in inboxs %}
-                        {% if j.sender_id == toId and j.to_user_id == user.id %}
-                            <h1>{{j.content}}</h1>
-                            <h1>{{j.created_at}}</h1>
-                            <br>
-                        {% endif %}
-                    {% endfor %} {% endcomment %}
-                    {% comment %} <h1>Sender id: {{i.sender_id}}</h1>
-                    <h1>Para User id: {{i.to_user_id}}</h1>
-                    <h1>------------------------------</h1> {% endcomment %}
-                {% endif %}
-            {% endfor %}
-        </table>
-
         
 <div class="panel-chat-usuarios">
-    <div class="panel-chat-header">
-        <div class="panel-chat-botones">
-            <button class="botones-chat" type="button">
-                <i class="fas fa-angle-down"></i>
-            </button>
-            <button class="botones-chat" type="button">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-    </div>
     <div class="panel-chat-datos">
         <div class="chat-avatar">
-            <img src="https://picsum.photos/200/200">
+            <img src=" {{ to.profile.image.url }} ">
             <span class="estado-usuario"></span>
         </div>
         <div class="datos-usuario">
             <h5>Conversando con</h5>
-            <p>Usuario</p>
+            <p>{{to}}</p>
         </div>
     </div>
+    
+    <form class='form' method='POST'>
+        {% csrf_token %}
+        <input type="text" name="content" placeholder='Dile algo a {{to}}' required>
+        <button type='submit' class='inbox' id=''>Enviar</button>
+    </form>
 
 <!--Mensajes-->
 <div class="panel-chat-body">
-{% for i in inboxs %}
-    {% if i.sender_id == user.id and i.to_user_id == toId or i.sender_id == toId and i.to_user_id == user.id %}
-    <!-- mensaje derecha -->
-    {% if i.sender_id == toId and i.to_user_id == user.id %}
-    <div class="panel-msj-der">
-        <div class="chat-cuerpo">
-            <div class="contenedor-msj">
-                <td>{{i.created_at|naturaltime}}</td>
-            </div>
-            <div class="contenedor-msj-footer">
-                <ul class="botones-footer">
-                    <li>
-                        <i class="fas fa-eye"></i>
-                    </li>
-                    <td>{{i.sender_id}}</td>
-                    <td>{{i.content}}</td>
-                </ul>
-            </div>
-        </div>
-    </div>
-{% endif %}
-    <!-- mensaje izquierda -->
-    {% if  i.sender_id == user.id and i.to_user_id == toId %}
-        <div class="panel-msj-izq">
-            <div class="chat-cuerpo">
-                <div class="contenedor-msj">
-                    <td>{{i.created_at|naturaltime}}</td>
+    {% for i in inboxs %}
+        {% if i.sender_id == user.id and i.to_user_id == toId or i.sender_id == toId and i.to_user_id == user.id %}
+            <!-- mensaje derecha -->
+            {% if i.sender_id == toId and i.to_user_id == user.id %}
+            <div class="panel-msj-izq">
+                <div class="chat-cuerpo">
+                    <div class="contenedor-msj">
+                        <td>{{i.created_at|naturaltime}}</td>
+                    </div>
+                    <div class="contenedor-msj-footer">
+                        <ul class="botones-footer">
+                            <li>
+                                <i class="fas fa-eye"></i>
+                            </li>
+                            <td>{{to}} dice: </td>
+                            <td>{{i.content}}</td>
+                        </ul>
+                    </div>
                 </div>
-                <div class="contenedor-msj-footer">
-                    <ul class="botones-footer">
-                        <li>
-                            <i class="fas fa-eye"></i>
-                        </li>
-                        <td>{{i.sender_id}}</td>
-                        <td>{{i.content}}</td>                       
-                        </tr>
-                    </ul>
+            </div>            
+
+            {% endif %}
+            <!-- mensaje izquierda -->
+            {% if  i.sender_id == user.id and i.to_user_id == toId %}
+            <div class="panel-msj-der">
+                <div class="chat-cuerpo">
+                    <div class="contenedor-msj">
+                        <td>{{i.created_at|naturaltime}}</td>
+                    </div>
+                    <div class="contenedor-msj-footer">
+                        <ul class="botones-footer">
+                            <li>
+                                <i class="fas fa-eye"></i>
+                            </li>
+                            {% comment %} <td>{{i.sender_id}}</td> {% endcomment %}
+                            <td>Yo: </td>
+                            <td>{{i.content}}</td>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-    {% endif %}
 
-    {% endif %}
-{% endfor %}
-</div>
-
+            {% endif %}
         {% endif %}
-    {% endif %}
+    {% endfor %}
+    </div>
+</div>
 {% endblock %}
+

@@ -31,6 +31,9 @@ def feed(request):
 
 def mail(request, id):
 	pet = Article.objects.filter(articuloid=id)
+	if request.method == 'POST':
+		messages.success(request, 'Enviando correo ... ')
+		return redirect('feed')
 	return render(request, 'social/mail.html', {'pet':pet})
 
 @login_required
@@ -96,7 +99,7 @@ def inbox(request, id):
 		form = PostForm()
 		print('else inbox 78')
 	return render(request, 'social/inbox.html', data)
-	
+
 @login_required
 def chats(request):
 	current_user = get_object_or_404(User, pk=request.user.id) # Usuario logueado
